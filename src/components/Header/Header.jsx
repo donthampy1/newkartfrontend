@@ -69,24 +69,23 @@ function Header() {
             </Menu>
 
             <button className="text-green-700 bg-white rounded-md px-1 border-2 border-green-700 hover:bg-green-700 hover:text-white hover:scale-110 transition-transform duration-1000">
-                {currentUser ? (
+                {currentUser.isUser ? (
                    <Link to="/account">
                   
                   <Typography> Account<AccountCircleIcon  /> </Typography>
                   </Link>
                   
-                  ):(<Typography> Sign In <AccountCircleIcon />
-                  </Typography>)
+                  ):(<Link to="/signin">  
+                  <Typography> Sign In <AccountCircleIcon />
+                  </Typography>
+                  </Link>)
                   }
-                   <Link to="/signin">   
-                  
-                  <Typography> Signin<AccountCircleIcon  /> </Typography>
-                  </Link>
+                   
                  
               
             </button>
 
-{currentUser ? ( <button className="text-green-700 bg-white rounded-md px-1 border-2 border-green-700 hover:bg-green-700 hover:text-white hover:scale-110 transition-transform duration-1000">
+{currentUser.isSeller ? ( <button className="text-green-700 bg-white rounded-md px-1 border-2 border-green-700 hover:bg-green-700 hover:text-white hover:scale-110 transition-transform duration-1000">
               <Link to="/selleraccount">
                 <Typography>
                   Seller Account  <AccountCircleIcon />
@@ -95,7 +94,7 @@ function Header() {
             </button>):( <button className="text-green-700 bg-white rounded-md px-1 border-2 border-green-700 hover:bg-green-700 hover:text-white hover:scale-110 transition-transform duration-1000">
               <Link to="/sellerlogin">
                 <Typography>
-                  Be a Partner or kart  <AccountCircleIcon />
+                  Be a Partner   <AccountCircleIcon />
                 </Typography>
               </Link>
             </button>)}

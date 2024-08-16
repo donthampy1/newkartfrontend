@@ -2,17 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Card } from '@mui/material';
 import Filterdrawer from '../components/newFilterdrawer';
+import { useSelector } from 'react-redux';
 
 const ProductList = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const searchTerm = searchParams.get('search');
+  const filters = useSelector((state) => state.filters.filters);
   const [productData, setProductData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/productsearch/search?q=${searchTerm}`);
+        const query = new URLSearchParams({
+          q: searchTerm,
+          brand: filters.brand,
+          screenSize: filters.screenSize,
+          processor: filters.processor,
+          storage: filters.storage,
+          minPrice: filters.priceRange[0],
+          maxPrice: filters.priceRange[1]
+        }).toString();
+
+        const response = await fetch(`http://localhost:3000/productsearch/search?${query}`);
         const data = await response.json();
         setProductData(data);
       } catch (err) {
@@ -21,13 +33,12 @@ const ProductList = () => {
     };
 
     fetchData();
-  }, [searchTerm]);
-  console.log(productData)
+  }, [searchTerm, filters]);
 
   return (
     <div className="flex">
-      <div >
-      <Filterdrawer  />
+      <div>
+        <Filterdrawer />
       </div>
       <div className="flex-grow p-4">
         <h1 className="text-2xl font-bold mb-4">Search Results for: {searchTerm}</h1>
