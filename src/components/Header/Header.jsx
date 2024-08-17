@@ -69,36 +69,29 @@ function Header() {
             </Menu>
 
             <button className="text-green-700 bg-white rounded-md px-1 border-2 border-green-700 hover:bg-green-700 hover:text-white hover:scale-110 transition-transform duration-1000">
-                {currentUser.isUser ? (
+                
                    <Link to="/account">
                   
                   <Typography> Account<AccountCircleIcon  /> </Typography>
                   </Link>
                   
-                  ):(<Link to="/signin">  
+                  <Link to="/signin">  
                   <Typography> Sign In <AccountCircleIcon />
                   </Typography>
-                  </Link>)
-                  }
+                  </Link>
+                  
                    
                  
               
             </button>
 
-{currentUser.isSeller ? ( <button className="text-green-700 bg-white rounded-md px-1 border-2 border-green-700 hover:bg-green-700 hover:text-white hover:scale-110 transition-transform duration-1000">
+<button className="text-green-700 bg-white rounded-md px-1 border-2 border-green-700 hover:bg-green-700 hover:text-white hover:scale-110 transition-transform duration-1000">
               <Link to="/selleraccount">
                 <Typography>
                   Seller Account  <AccountCircleIcon />
                 </Typography>
               </Link>
-            </button>):( <button className="text-green-700 bg-white rounded-md px-1 border-2 border-green-700 hover:bg-green-700 hover:text-white hover:scale-110 transition-transform duration-1000">
-              <Link to="/sellerlogin">
-                <Typography>
-                  Be a Partner   <AccountCircleIcon />
-                </Typography>
-              </Link>
-            </button>)}
-
+            </button> 
            
 
             <IconButton   className="text-green-700">
