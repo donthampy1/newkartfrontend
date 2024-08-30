@@ -17,7 +17,7 @@ function SellerSignup() {
       try {
         console.log(data)
 
-        const response = await axios.post('http://localhost:3000/auth/sellersignup', data)
+        const response = await axios.post('https://newkartbackend.onrender.com/auth/sellersignup', data)
         console.log(data)
         console.log("this is reply from server",response.data)
         navigate('/')

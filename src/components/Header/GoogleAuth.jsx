@@ -24,7 +24,7 @@ function GoogleAuth({ setError}) {
             const email = result.user.email
             const username = result.user.displayName
 
-            const res = await axios.post('http://localhost:3000/auth/googlesignup', {email,username})
+            const res = await axios.post('https://newkartbackend.onrender.com/auth/googlesignup', {email,username})
             const data = await res.data
             dispatch(signInSuccess(data))
 

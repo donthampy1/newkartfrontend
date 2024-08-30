@@ -19,7 +19,7 @@ const CartPage = () => {
     // Fetch the product data based on the ID
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/cart/search?id=${id}`);
+        const response = await fetch(`https://newkartbackend.onrender.com/cart/search?id=${id}`);
         const data = await response.json();
         setProduct(data.items);
         dispatch(setCartData(data.items))

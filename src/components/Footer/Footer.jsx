@@ -13,7 +13,7 @@ const Footer = () => {
     } }}/>
       <h1 className="text-xl text-gray-700">NewKart</h1>
       </div>   
-      <p className='w-full md:w-2/3 text-gray-700'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est placeat odio impedit quod facere veniam modi, eum distinctio doloremque autem voluptatibus vel beatae, qui, sed deserunt. Eaque dolores minima quos.</p>
+      <p className='w-full md:w-2/3 text-gray-700'>At NewKart, we are committed to delivering innovation and excellence, making your shopping experience seamless and satisfying. Stay connected for exciting deals and offers !!</p>
 </div>
         
         <div className=''>

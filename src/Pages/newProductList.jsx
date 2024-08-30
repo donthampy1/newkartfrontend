@@ -21,7 +21,7 @@ const ProductList = () => {
 
         }).toString();
 console.log(searchParams,query)
-        const response = await fetch(`http://localhost:3000/productsearch/search?${query}`);
+        const response = await fetch(`https://newkartbackend.onrender.com/productsearch/search?${query}`);
         const data = await response.json();
         setProductData(data); 
       } catch (err) {

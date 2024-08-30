@@ -21,7 +21,7 @@ function SellerLogin() {
         console.log(data)
         const response = await axios({
           method: 'post',
-          url: 'http://localhost:3000/auth/sellersignin',    
+          url: 'https://newkartbackend.onrender.com/auth/sellersignin',    
           data,
           withCredentials: true
       })

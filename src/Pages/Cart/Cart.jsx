@@ -22,7 +22,7 @@ function Cart() {
         console.log(data)
         const response = await axios({
           method: 'post',
-          url: 'http://localhost:3000/auth/signin',    
+          url: 'https://newkartbackend.onrender.com/auth/signin',    
           data,
           withCredentials: true
       })

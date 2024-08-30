@@ -26,7 +26,7 @@ function GoogleAuthLogin({ setError}) {
             } 
             const response = await axios({
                 method: 'post',
-                url: 'http://localhost:3000/auth/googlesignin',    
+                url: 'https://newkartbackend.onrender.com/auth/googlesignin',    
                 data,
                 withCredentials: true
             })

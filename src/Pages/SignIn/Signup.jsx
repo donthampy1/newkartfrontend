@@ -17,7 +17,7 @@ function Signup() {
 
     const onSubmit = async (data)=>{
       try {
-        const response = await axios.post('http://localhost:3000/auth/signup', data)
+        const response = await axios.post('https://newkartbackend.onrender.com/auth/signup', data)
         console.log(data)
         console.log("this is reply from server",response.data)
         navigate('/')
