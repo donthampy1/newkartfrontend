@@ -24,7 +24,6 @@ function Header() {
     setMenu(null);
     console.log("left");
   };
-  console.log(currentUser.isUser);
 
 
   return (
