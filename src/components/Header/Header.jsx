@@ -65,12 +65,12 @@ function Header() {
 </div>
     </div>
   </NavLink>
-  {currentUser.isUser ? (
+  {currentUser && currentUser.isUser ? (
     <NavLink to="/profile" className="flex flex-col items-center gap-1">
       PROFILE
       <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
     </NavLink>
-  ) : currentUser.isSeller ? (
+  ) :currentUser && currentUser.isSeller ? (
     <NavLink to="/selleraccount" className="flex flex-col items-center gap-1 mr-4">
       SELLER PANEL
       <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
@@ -81,18 +81,21 @@ function Header() {
       <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
     </NavLink>
   )}
-   {!currentUser.isSeller && (
+   {!currentUser?.isSeller && (
     <NavLink to="/sellerlogin" className="flex flex-col items-center gap-1">
       BECOME A PARTNER
       <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
     </NavLink>
   )}
-    <NavLink to={`/cart/${currentUser._id}`}  className='flex flex-col items-center gap-1'>
-  <ShoppingCartOutlinedIcon/>
-  <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden"/>
-
-
-  </NavLink>
+    {currentUser && (
+            <NavLink
+              to={`/cart/${currentUser._id}`}
+              className="flex flex-col items-center gap-1"
+            >
+              <ShoppingCartOutlinedIcon />
+              <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+            </NavLink>
+          )}
   <DarkModeIcon/>
 
 </ul>
