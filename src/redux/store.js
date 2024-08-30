@@ -3,15 +3,15 @@ import useReducer from './user/userSlice.js'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import persistStore from 'redux-persist/es/persistStore'
-import filterReducer from './user/filterSlice.js'
+import cartReducer from './user/cartSlice.js'
 
 
-const rootReducer = combineReducers({user: useReducer,filters: filterReducer})
+const rootReducer = combineReducers({user: useReducer,cart: cartReducer})
 const persistConfig = {
     key: 'root' ,
     version: 1,
     storage,
-    blacklist: ['filters'],
+    blacklist: ['cart'],
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

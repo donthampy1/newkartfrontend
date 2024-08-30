@@ -35,19 +35,13 @@ function Signup() {
 
 
   return (
-    <Box className="flex  flex-col items-center justify-center min-h-screen  ">
-    <Card elevation={12} className="p-6  w-80 flex flex-col  pb-11  ">
-      <Box className="flex flex-row items-center justify-center text-green-700 p-1  text-center">
-        <DevicesOutlinedIcon fontSize="large" />
-        <Typography variant="h5" component="div">
-          DONKART
-        </Typography>
-      </Box>
+    <Box className="flex  flex-col items-center justify-center pt-20  ">
+    <div className="p-6  border-gray-400 border shadow-lg  w-80 flex flex-col items-center  pb-11   ">
+      
 
-      <h1 className="text-2xl py-2">SignUp</h1>
+      <h1 className="text-2xl py-2">Sign Up</h1>
       <Box>
         <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="text-md py-0">username</h1>
 
 <input
   {...register('username',{
@@ -55,13 +49,12 @@ function Signup() {
   }
   )}
   type="text"
-  placeholder="your name"
-  className="px-3 py-1 border-2 border-black rounded-md w-full"
+  placeholder="name"
+  className="px-3 py-2 border border-gray-700  w-full"
 ></input>
 {errors.name && (
     <div className="text-red-500 text-sm">{errors.name.message}</div>
 )}
-          <h1 className="text-md py-0">email</h1>
 
           <input
             {...register('email',{
@@ -69,13 +62,12 @@ function Signup() {
             }
             )}
             type="email"
-            placeholder="your email"
-            className="px-3 py-1 border-2 border-black rounded-md w-full"
+            placeholder="email"
+            className="px-3 py-2 mt-4 border border-gray-700 w-full"
           ></input>
           {errors.email && (
               <div className="text-red-500 text-sm">{errors.email.message}</div>
       )}
-       <h1 className="text-md py-0">phone</h1>
 
 <input
   {...register('phone',{
@@ -84,13 +76,12 @@ function Signup() {
   )}
   type="number"
   placeholder="your phone number"
-  className="px-3 py-1 border-2 border-black rounded-md w-40"
+  className="px-3 py-2 mt-4 border border-gray-700 w-full"
 ></input>
 {errors.phone && (
     <div className="text-red-500 text-sm">{errors.phone.message}</div>
 )}
 
-          <h1 className="text-md pt-1">password</h1>
 
           <input
           {...register('password',{
@@ -102,8 +93,8 @@ function Signup() {
           })}
 
             type="password"
-            placeholder="your password"
-            className="px-3 py-1 border-2 border-black rounded-md w-40"
+            placeholder="password"
+            className="px-3 py-2 mt-4 border border-gray-700 w-full"
           ></input>
           {errors.password && (
               <div className="text-red-500 text-sm">{errors.password.message}</div>
@@ -111,7 +102,7 @@ function Signup() {
           <button 
           type="submit"
           disabled={isSubmitting}
-          className=" w-full bg-green-700 rounded-md text-white p-2 mt-4 hover:bg-green-800 hover:text-white focus:bg-green-700 focus:text-white focus:outline-none">{isSubmitting ? "Signing up ..." :"Signup"}</button>
+          className=" w-full bg-black text-white p-2 mt-4 hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none">{isSubmitting ? "Signing up ..." :"Signup"}</button>
 
 
           <GoogleAuth setError={setError}/>
@@ -121,16 +112,15 @@ function Signup() {
           
 
         </form>
-       <h1 className="text-center text-2xl">or</h1>
        <button  
-       className="text-green-700 p-2 mt-2 bg-white w-full rounded-md px-1 border-2 border-green-700 hover:bg-green-700 hover:text-white  transition-transform duration-1000 ">
+       className=" mt-2 hover:text-blue-900 ">
             <Link to='/signin'>
-            <Typography> Login</Typography>
+            <p className=""> Already have an account ?</p>
             </Link>
           </button>
 
       </Box>
-    </Card>
+    </div>
   </Box>
   )
 }

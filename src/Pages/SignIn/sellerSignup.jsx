@@ -1,6 +1,5 @@
 import React from "react";
-import { Card, Typography, Box } from "@mui/material";
-import DevicesOutlinedIcon from "@mui/icons-material/DevicesOutlined";
+import {  Box } from "@mui/material";
 import { useForm } from "react-hook-form"
 import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -36,19 +35,13 @@ function SellerSignup() {
 
 
   return (
-    <Box className="flex  flex-col items-center justify-center min-h-screen  ">
-    <Card elevation={12} className="p-6  w-80 flex flex-col  pb-11  ">
-      <Box className="flex flex-row items-center justify-center text-green-700 p-1  text-center">
-        <DevicesOutlinedIcon fontSize="large" />
-        <Typography variant="h5" component="div">
-          DONKART
-        </Typography>
-      </Box>
+    <Box className="flex  flex-col   items-center justify-center pt-20  ">
+    <div className="p-6   border-gray-400 border shadow-lg  w-80 flex flex-col items-center  pb-11  ">
+     
 
-      <h1 className="text-2xl py-2">Register</h1>
+      <h1 className="text-3xl text-gray-700 py-2">Register</h1>
       <Box>
         <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="text-md py-0">Agency name</h1>
 
 <input
   {...register('agencyname',{
@@ -57,12 +50,11 @@ function SellerSignup() {
   )}
   type="text"
   placeholder="Agency name"
-  className="px-3 py-1 border-2 border-black rounded-md w-full"
+  className="px-3 py-2 border border-gray-700 w-full"
 ></input>
 {errors.agencyname && (
     <div className="text-red-500 text-sm">{errors.agencyname.message}</div>
 )}
-          <h1 className="text-md py-0"> Agency email</h1>
 
           <input
             {...register('email',{
@@ -70,13 +62,12 @@ function SellerSignup() {
             }
             )}
             type="email"
-            placeholder="your email"
-            className="px-3 py-1 border-2 border-black rounded-md w-full"
+            placeholder="email"
+            className="px-3 py-2 mt-5 border border-gray-700 w-full"
           ></input>
           {errors.email && (
               <div className="text-red-500 text-sm">{errors.email.message}</div>
       )}
-       <h1 className="text-md py-0">Agency phone</h1>
 
 <input
   {...register('phone',{
@@ -85,13 +76,12 @@ function SellerSignup() {
   )}
   type="number"
   placeholder="your phone number"
-  className="px-3 py-1 border-2 border-black rounded-md w-40"
+  className="px-3 py-2 mt-5 border border-gray-700 w-full"
 ></input>
 {errors.phone && (
     <div className="text-red-500 text-sm">{errors.phone.message}</div>
 )}
 
-          <h1 className="text-md pt-1">password</h1>
 
           <input
           {...register('password',{
@@ -103,8 +93,8 @@ function SellerSignup() {
           })}
 
             type="password"
-            placeholder="your password"
-            className="px-3 py-1 border-2 border-black rounded-md w-40"
+            placeholder="password"
+            className="px-3 mt-5 py-2 border border-gray-700 w-full"
           ></input>
           {errors.password && (
               <div className="text-red-500 text-sm">{errors.password.message}</div>
@@ -112,7 +102,7 @@ function SellerSignup() {
           <button 
           type="submit"
           disabled={isSubmitting}
-          className=" w-full bg-green-700 rounded-md text-white p-2 mt-4 hover:bg-green-800 hover:text-white focus:bg-green-700 focus:text-white focus:outline-none">{isSubmitting ? "Signing up ..." :"Signup"}</button>
+          className=" w-full bg-black text-white p-2 mt-4 hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none">{isSubmitting ? "Signing up ..." :"Signup"}</button>
 
 
           {errors.email ? (
@@ -121,16 +111,15 @@ function SellerSignup() {
           
 
         </form>
-       <h1 className="text-center text-2xl">or</h1>
        <button  
-       className="text-green-700 p-2 mt-2 bg-white w-full rounded-md px-1 border-2 border-green-700 hover:bg-green-700 hover:text-white  transition-transform duration-1000 ">
-            <Link to='/sellersignin'>
-            <Typography> registered partner ? Login</Typography>
+       className="mt-2 hover:text-blue-900 ">
+            <Link to='/sellerlogin'>
+            <p> registered partner ? </p>
             </Link>
           </button>
 
       </Box>
-    </Card>
+    </div>
   </Box>
   )
 }

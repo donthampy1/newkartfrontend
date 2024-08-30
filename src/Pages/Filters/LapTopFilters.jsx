@@ -1,40 +1,52 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Typography, Slider, InputLabel, Select, MenuItem, Button } from '@mui/material';
-import { setFilters, resetFilters } from '../../redux/user/filterSlice';
 
-function LapTopFilters() {
-  const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters.filters);
-  const [value, setValue] = useState(filters.priceRange);
+function LapTopFilters({ onSubmit }) {
+
+  const [filters, setFilters] = useState({
+    priceRange: [10000, 100000],
+    brand: '',
+    screenSize: '',
+    processor: '',
+    storage: ''
+  });
+
+  const [showFilter, setshowFilter] = useState(false)
+
+
 
   const handlePriceChange = (event, newValue) => {
-    if (newValue[1] - newValue[0] >= 50) {
-      setValue(newValue);
-      dispatch(setFilters({ priceRange: newValue }));
-    }
+    setFilters((prevFilters) => ({ ...prevFilters, priceRange: newValue }));
   };
-
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
-    dispatch(setFilters({ [name]: value }));
+    setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
   };
 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(filters);
+  };
   
 
   return (
     <>
-      <div>LapTopFilters</div>
-      <Typography gutterBottom>Price Range</Typography>
+    <div className='flex flex-col  justify-center   '>
+        <form onSubmit={handleSubmit} className='flex flex-col justify-center  bg-gray-400 p-3  '>
+
+      <p className=' text-xl font-semibold flex items-center cursor-pointer text-gray-700 gap-2'onClick={()=>setshowFilter(!showFilter)} >LAPTOP FILTERS</p>
+
+      <div className={`border border-gray-300  p-5 py-3 mt-2 ${showFilter ? '':'hidden'} md:block`}>
+      <p>Price Range</p>
       <Slider
-        value={value}
+        value={filters.priceRange}
         onChange={handlePriceChange}
         valueLabelDisplay="auto"
         min={10000}
         max={100000}
       />
-      <Typography>Min: {value[0]}</Typography>
-      <Typography>Max: {value[1]}</Typography>
+    <Typography>{filters.priceRange[0]}- {filters.priceRange[1]}</Typography>
 
       <InputLabel id="brand-select-label">Brand</InputLabel>
       <Select
@@ -97,6 +109,11 @@ function LapTopFilters() {
         <MenuItem value={'512'}>512</MenuItem>
         <MenuItem value={'1024'}>1024</MenuItem>
       </Select>
+      <Button type="submit">Apply Filters</Button>
+      </div>
+      </form>
+      </div>
+
 
     </>
   );

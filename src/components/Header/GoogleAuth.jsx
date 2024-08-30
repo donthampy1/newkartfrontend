@@ -52,7 +52,7 @@ function GoogleAuth({ setError}) {
 type="button"
 onClick={handleGoogleSignup}
             
-            className=" w-full bg-red-700 rounded-md text-white p-2 mt-4  hover:bg-red-600 focus:bg-green-700 focus:text-white focus:outline-none">Continue with GOOGLE</button>  )
+            className=" w-full bg-white  text-black border border-gray-700 p-2 mt-4  hover:bg-black hover:text-white focus:bg-gray-700 focus:text-white focus:outline-none">Continue with GOOGLE</button>  )
 }
 
 export default GoogleAuth

@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import LapTopFilters from '../Pages/Filters/LapTopFilters'
 import { Card } from '@mui/material'
 
-const Filterdrawer = () => {
+const Filterdrawer = ({ onFilterSubmit }) => {
   
   return (
     <>
-    <Card  elevation={20} className='p-10 w-96 mt-14'>
-    <LapTopFilters  />
+    <Card  elevation={1} className='flex flex-col justify-center '>
+    <LapTopFilters onSubmit={onFilterSubmit}  />
     </Card>
       </>
   )

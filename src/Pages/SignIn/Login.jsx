@@ -44,23 +44,14 @@ function Login() {
     }
 
 
-
-
-
   return (
-    <Box className="flex  flex-col items-center justify-center pt-20  ">
-      <Card elevation={12} className="p-6  w-80 flex flex-col  pb-11  ">
-        <Box className="flex flex-row items-center justify-center text-green-700 p-1 w-full text-center">
-          <DevicesOutlinedIcon fontSize="large" />
-          <Typography variant="h5" component="div">
-            DONKART
-          </Typography>
-        </Box>
+    <Box className="flex  flex-col    items-center justify-center pt-28  ">
+      <div className="p-6  border-gray-400 border shadow-lg  w-80 flex flex-col items-center  pb-11  ">
+        
 
-        <h1 className="text-2xl  font-semibold py-2">Sign In</h1>
+        <h1 className="text-3xl text-gray-700  py-5">Sign In</h1>
         <Box>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <h1 className="text-md py-0">email</h1>
 
             <input
               {...register('email',{
@@ -68,12 +59,11 @@ function Login() {
               }
               )}
               type="email"
-              placeholder="your name"
-              className="px-3 py-1 border-2 border-black rounded-md w-full"
+              placeholder="email"
+              className="px-3 py-2 border  border-gray-700  w-full"
             ></input>
             
 
-            <h1 className="text-md pt-1">password</h1>
 
             <input
             {...register('password',{
@@ -85,41 +75,31 @@ function Login() {
             })}
 
               type="password"
-              placeholder="your name"
-              className="px-3 py-1 border-2 border-black rounded-md w-full"
+              placeholder="password"
+              className="px-3 py-2 mt-5 border border-gray-700 w-full"
             ></input>
             {errors.email && (
                 <div className="text-red-500 text-sm">{errors.email.message}</div>
         )}
             <button 
             disabled={isSubmitting}
-            className=" w-full bg-green-700 rounded-md text-white p-2 mt-4 hover:bg-green-800 hover:text-white focus:bg-green-700 focus:text-white focus:outline-none">{isSubmitting ? "Logging in ..." :"SIGN IN"}</button>
+            className=" w-full bg-black text-white p-2 mt-4 hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none">{isSubmitting ? "Logging in ..." :"SIGN IN"}</button>
 
 
 
 <GoogleAuthLogin setError={setError}/>
 
 
-
-
-
-
-
-
-
-
-
           </form>
-         <h1 className="text-center text-2xl">or</h1>
          <button  
-         className="text-green-700 p-2 mt-2 bg-white w-full rounded-md px-1 border-2 border-green-700 hover:bg-green-700 hover:text-white  transition-transform duration-1000 ">
+         className="mt-2 hover:text-blue-900 ">
               <Link to='/signup'>
-              <Typography> Sign Up</Typography>
+              <p className=""> Don't have an account ?</p>
               </Link>
             </button>
 
         </Box>
-      </Card>
+      </div>
     </Box>
   );
 }

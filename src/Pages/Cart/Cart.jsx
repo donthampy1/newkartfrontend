@@ -6,9 +6,10 @@ import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { signInStart,signInFailure,signInSuccess } from "../../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import GoogleAuthLogin from "../../components/Header/GoogleAuthLogin";
 
 
-function SellerLogin() {
+function Cart() {
     const {register,handleSubmit,formState:{errors,isSubmitting},setError} = useForm()
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -21,12 +22,13 @@ function SellerLogin() {
         console.log(data)
         const response = await axios({
           method: 'post',
-          url: 'http://localhost:3000/auth/sellersignin',    
+          url: 'http://localhost:3000/auth/signin',    
           data,
           withCredentials: true
       })
       
         dispatch(signInSuccess(response.data))
+        console.log(response.data)
         navigate('/')
       }catch(err){
 
@@ -46,13 +48,20 @@ function SellerLogin() {
 
 
   return (
-    <Box className="flex  flex-col   items-center justify-center pt-28   ">
-      <div className="p-6  border-gray-400 border shadow-lg  w-80 flex flex-col items-center  pb-11   ">
-        
+    <Box className="flex  flex-col items-center justify-center pt-20  ">
+      <Card elevation={12} className="p-6  w-80 flex flex-col  pb-11  ">
+        <Box className="flex flex-row items-center justify-center text-green-700 p-1 w-full text-center">
+          <DevicesOutlinedIcon fontSize="large" />
+          <Typography variant="h5" component="div">
+            DONKART this is caart
+            
+          </Typography>
+        </Box>
 
-        <h1 className="text-3xl  text-gray-700 py-5">Sign In</h1>
+        <h1 className="text-2xl  font-semibold py-2">Sign In</h1>
         <Box>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <h1 className="text-md py-0">email</h1>
 
             <input
               {...register('email',{
@@ -61,10 +70,11 @@ function SellerLogin() {
               )}
               type="email"
               placeholder="your name"
-              className="px-3 py-2 border border-gray-700 w-full"
+              className="px-3 py-1 border-2 border-black rounded-md w-full"
             ></input>
             
 
+            <h1 className="text-md pt-1">password</h1>
 
             <input
             {...register('password',{
@@ -77,17 +87,18 @@ function SellerLogin() {
 
               type="password"
               placeholder="your name"
-              className="px-3 py-2 border-2 mt-5 border-gray-700 w-full"
+              className="px-3 py-1 border-2 border-black rounded-md w-full"
             ></input>
             {errors.email && (
                 <div className="text-red-500 text-sm">{errors.email.message}</div>
         )}
             <button 
             disabled={isSubmitting}
-            className="w-full bg-black text-white p-2 mt-4 hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none">{isSubmitting ? "Logging in ..." :"SIGN IN"}</button>
+            className=" w-full bg-green-700 rounded-md text-white p-2 mt-4 hover:bg-green-800 hover:text-white focus:bg-green-700 focus:text-white focus:outline-none">{isSubmitting ? "Logging in ..." :"SIGN IN"}</button>
 
 
 
+<GoogleAuthLogin setError={setError}/>
 
 
 
@@ -100,17 +111,18 @@ function SellerLogin() {
 
 
           </form>
+         <h1 className="text-center text-2xl">or</h1>
          <button  
-         className=" mt-2 hover:text-blue-900 ">
-              <Link to='/sellersignup'>
-              <p>Not a registered seller ? Sign Up</p>
+         className="text-green-700 p-2 mt-2 bg-white w-full rounded-md px-1 border-2 border-green-700 hover:bg-green-700 hover:text-white  transition-transform duration-1000 ">
+              <Link to='/signup'>
+              <Typography> Sign Up</Typography>
               </Link>
             </button>
 
         </Box>
-      </div>
+      </Card>
     </Box>
   );
 }
 
-export default SellerLogin;
+export default Cart;

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import{Box,IconButton, Stack, TextField, } from '@mui/material'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 import { useNavigate } from 'react-router-dom'
 
@@ -11,8 +10,9 @@ const Search = () => {
     const navigate = useNavigate()
 
     useEffect(()=>{
-        if (query.length>3){
+        if (query.length>0){
             autoComplete(query)
+            console.log(suggestion)
         }else{
             setSuggestion([])
         }
@@ -25,6 +25,7 @@ const Search = () => {
             const response = await fetch(`http://localhost:3000/autocomplete/search?q=${search}`)
             const data = await response.json()
             setSuggestion(data)
+            console.log(suggestion)
         }catch (err){
             console.log(err)
         }
@@ -35,6 +36,8 @@ const Search = () => {
     const handleSearch = ()=>{
         if (query) {
             navigate(`/productlist?search=${query}`);
+            setSuggestion([])
+
         }
     }
 
@@ -46,23 +49,23 @@ const Search = () => {
   return (
     <>
     <div>
-<Box display={'flex'} className="bg-green-700 rounded-md mx-5">
+<div className="  lg:w-96 inline-flex items-center p-2 justify-center border border-gray-700 px-3  rounded-full">
+    
 <input
     type="text"
-    className="bg-green-700 flex-shrink text-white placeholder-white rounded-xl px-2 py-2 focus:outline-none   max-w-60"
-    placeholder="search products, brands..." 
+    className="flex-1 outline-none bg-inherit text-sm"
+    placeholder="search..." 
     
     onChange={(e)=> setQuery(e.target.value)}/>
-<IconButton onClick={handleSearch}>
-    <SearchRoundedIcon className="text-white" />
-</IconButton>
+    <SearchRoundedIcon  type='submit' onClick={handleSearch} className="text-black" />
 
-</Box> 
-<div className="block absolute w-64 z-1 my-4  bg-white">
+
+</div> 
+<div className="absolute bg-gray-100  mt-5    gap-2    rounded-xl">
 {
-suggestion.map(item => <div className='text-black border-2 w-64 h-10 truncate' keys = {item._id}>
+suggestion.map(item => <p className=' text-center font-normal p-2 rounded-xl hover:bg-gray-200 lg:w-96 w-64  truncate' keys = {item._id}>
     {item.name}
-    </div>)
+    </p>)
 }
 
 </div>
@@ -73,3 +76,7 @@ suggestion.map(item => <div className='text-black border-2 w-64 h-10 truncate' k
 }
 
 export default Search
+
+
+
+
