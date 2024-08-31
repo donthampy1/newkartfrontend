@@ -1,10 +1,8 @@
 import React from "react";
-import {AppBar,Box,IconButton,Menu,Toolbar,Typography,MenuList,MenuItem, responsiveFontSizes, Drawer,} from "@mui/material";
+import {AppBar, Drawer,} from "@mui/material";
 import DevicesOutlinedIcon from "@mui/icons-material/DevicesOutlined";
 import { Link, NavLink } from "react-router-dom";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useState } from "react";
-import ContrastIcon from "@mui/icons-material/Contrast";
 import {useSelector} from 'react-redux'
 import Search from "../Search";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -147,19 +145,38 @@ function Header() {
 </div>
     </div>
   </NavLink>
-  <NavLink to='/signin'onClick={()=>{setOpenDrawer(false)}} className='py-2 pl-6 border'>
-    SIGN IN 
-
-  </NavLink>
+  {currentUser ? (
+                  <NavLink
+                    to="/profile"
+                    onClick={() => {
+                      setOpenDrawer(false);
+                    }}
+                    className="py-2 pl-6 border"
+                  >
+                    PROFILE
+                  </NavLink>
+                ) : (
+                  <NavLink
+                    to="/signin"
+                    onClick={() => {
+                      setOpenDrawer(false);
+                    }}
+                    className="py-2 pl-6 border"
+                  >
+                    SIGN IN
+                  </NavLink>
+                )}
   <NavLink to='/sellerlogin' onClick={()=>{setOpenDrawer(false)}} className='py-2 pl-6 border'>
     BECOME A PARTNER
 
   </NavLink>
-  <NavLink to='/sellerlogin' className='py-2 pl-6 border'>
+
+  {currentUser && (
+  <NavLink to={`/cart/${currentUser._id}`}  onClick={()=>{setOpenDrawer(false)}} className='py-2 pl-6 border'>
     YOUR CART <ShoppingCartOutlinedIcon/>
 
   </NavLink>
-  
+   )}
 
 
   
