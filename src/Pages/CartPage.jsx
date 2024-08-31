@@ -11,15 +11,18 @@ const CartPage = () => {
     const [totalPrice, setTotalPrice] = useState(0)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(true); 
+    const { currentUser } = useSelector((state) => state.user)
+
+
 
 
     
 
   useEffect(() => {
-    // Fetch the product data based on the ID
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://newkartbackend.onrender.com/cart/search?id=${id}`);
+        const response = await fetch(`https://newkartbackend-1.onrender.com/cart/search?id=${id}`);
         const data = await response.json();
         setProduct(data.items);
         dispatch(setCartData(data.items))
@@ -28,7 +31,8 @@ const CartPage = () => {
 
         const total = data.items.reduce((sum, item) => sum + item.productPrice, 0);
         setTotalPrice(total);
-        
+        setLoading(false); 
+
       } catch (error) {
         console.error('Error fetching product:', error);
       }
@@ -42,9 +46,10 @@ console.log(product)
 console.log(product)
 console.log(totalPrice)
 
-if (!product) {
-  console.log('workingggg')
-  return <div>Loading...</div>;
+
+
+if (loading) {
+  return <div className="mt-20">Loading...</div>; 
 }
 
   return (
@@ -115,7 +120,7 @@ if (!product) {
 </div>
 <div><div className=' flex pl-[130px] justify-center'>
 
-<button onClick={()=>{navigate('/cart/checkout')}}  className='bg-black  text-white  px-8 py-3 text-sm active:bg:gray-700 m-3  rounded-sm'>PROCEED TO CHECKOUT </button>
+<button onClick={()=>{navigate(`/cart/checkout/${currentUser._id}`)}}  className='bg-black  text-white  px-8 py-3 text-sm active:bg:gray-700 m-3  rounded-sm'>PROCEED TO CHECKOUT </button>
           </div>
         </div>
 

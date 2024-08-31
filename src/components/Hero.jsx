@@ -32,7 +32,7 @@ const Hero = () => {
       ];
 
   return (
-    <div className='mt-20 flex flex-col m-5  sm:flex-row border border-gray-400'>
+    <div className='mt-28 flex flex-col m-5  sm:flex-row border border-gray-400'>
         <div className='w-full  sm:w-1/2 flex md:p-7 sm:p-5 lg:p-24 items-center justify-center py-0 sm:py-0'>
         <div className='text-gray-700   m-6 sm:m-3 md:m-5 lg:m-0 items-center text-center'>
             <div className='flex items-center  gap-2'>

@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent, Typography, Box, TextField } from "@mui/material";
 import DevicesOutlinedIcon from "@mui/icons-material/DevicesOutlined";
 import { useForm } from "react-hook-form"
-import { Link,useNavigate } from "react-router-dom";
+import { Link,useLocation,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { signInStart,signInFailure,signInSuccess } from "../../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,8 @@ function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { loading, error } = useSelector((state) => state.user)
+    const location = useLocation()
+
 
     const onSubmit = async (data)=>{
       try {
@@ -22,14 +24,14 @@ function Login() {
         console.log(data)
         const response = await axios({
           method: 'post',
-          url: 'https://newkartbackend.onrender.com/auth/signin',    
+          url: 'https://newkartbackend-1.onrender.com/auth/signin',    
           data,
           withCredentials: true
       })
       
         dispatch(signInSuccess(response.data))
-        console.log(response.data)
-        navigate('/')
+        console.log(response.data,"received")
+        navigate(-1);
       }catch(err){
 
         if (err.response && err.response.status === 404 ) {

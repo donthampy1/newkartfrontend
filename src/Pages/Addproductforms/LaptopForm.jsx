@@ -21,7 +21,7 @@ const LaptopForm = ({ category }) => {
     formData.append('category', category); 
 
     try {
-      const response = await axios.post('http://localhost:3000/addproducts/laptop/add', formData, {
+      const response = await axios.post('https://newkartbackend-1.onrender.com/addproducts/laptop/add', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

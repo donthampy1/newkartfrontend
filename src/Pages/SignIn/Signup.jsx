@@ -17,10 +17,10 @@ function Signup() {
 
     const onSubmit = async (data)=>{
       try {
-        const response = await axios.post('https://newkartbackend.onrender.com/auth/signup', data)
+        const response = await axios.post('https://newkartbackend-1.onrender.com/auth/signup', data)
         console.log(data)
         console.log("this is reply from server",response.data)
-        navigate('/')
+        navigate('/signin')
       }catch(err){
         if (err.response && err.response.status === 400) {
             setError("email", { type: "manual", message: err.response.data.message });
@@ -35,7 +35,7 @@ function Signup() {
 
 
   return (
-    <Box className="flex  flex-col items-center justify-center pt-20  ">
+    <Box className="flex  flex-col items-center justify-center pt-24  ">
     <div className="p-6  border-gray-400 border shadow-lg  w-80 flex flex-col items-center  pb-11   ">
       
 
@@ -75,7 +75,7 @@ function Signup() {
   }
   )}
   type="number"
-  placeholder="your phone number"
+  placeholder="number"
   className="px-3 py-2 mt-4 border border-gray-700 w-full"
 ></input>
 {errors.phone && (

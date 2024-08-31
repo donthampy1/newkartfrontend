@@ -1,29 +1,68 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import {useSelector} from 'react-redux'
 import {loadStripe} from '@stripe/stripe-js';
+import { useParams } from 'react-router-dom';
 
 
 
 const CheckOut = () => {
+
+  const { currentUser } = useSelector((state) => state.user)
+
   const [buttonSelect,setButtonSelect] = useState('stripe')
-  const { currentCart } = useSelector((state) => state.cart)
-  console.log(currentCart,"data from redux")
-  const total = currentCart.reduce((sum, item) => sum + item.productPrice, 0);
+  const { id } = useParams()
+  const [product, setProduct] = useState(null);
+  const [totalPrice, setTotalPrice] = useState(0)
+  const total = product || [].reduce((sum, item) => sum + item.productPrice, 0);
 
 
   console.log(total,"from redux")
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`https://newkartbackend-1.onrender.com/cart/search?id=${id}`);
+        console.log('startewd')
+
+        const data = await response.json();
+        setProduct(data.items);
+        console.log(data,"thid is working")
+
+
+        const total = data.items.reduce((sum, item) => sum + item.productPrice, 0);
+        setTotalPrice(total);
+
+      } catch (error) {
+        console.error('Error fetching product:', error);
+      }
+    };
+
+    fetchProduct();
+  }, []);
+
+console.log(product,'knvkhehnnfvec')
+
+console.log(product)
+console.log(totalPrice)
+
+
+
+
+
+
+
 
   const makePayment = async ()=>{
 
     const stripe = await loadStripe('pk_test_51PstSLJfhghqKvcaYBkYe7XqKnqYFOXe58CO8fvaJeohNSgutXeHE4maQ2GeIuZkTGjUjJ26wxaDvoHk7MAdadcQ00wj9AAj6w')
     const body = {
-      products : currentCart,
-      total : total 
+      products : product,
+      total : totalPrice 
     }
     const headers = {
       "Content-Type":"application/json"
     }
-    const response = await fetch('https://newkartbackend.onrender.com/checkout/createcheckout',{
+    const response = await fetch('https://newkartbackend-1.onrender.com/checkout/createcheckout',{
       method : "POST",
       headers : headers,
       body : JSON.stringify(body)
@@ -75,7 +114,7 @@ const CheckOut = () => {
           <div className='flex flex-col gap-2  mt-2 text-sm'>
 <div className='flex  justify-between'>
   <p>SUBTOTAL: </p>
-  <p className='ml-56'>Rs.{total}.00</p>
+  <p className='ml-56'>Rs.{totalPrice}.00</p>
   <hr/>
   </div>
   <hr/>
@@ -97,7 +136,7 @@ const CheckOut = () => {
 
 <div className='flex justify-between'>
 <b>TOTAL:</b>
-<b>Rs.{total + 1000}.00</b>
+<b>Rs.{totalPrice + 1000}.00</b>
 </div>
 </div>
       </div>

@@ -17,10 +17,10 @@ function SellerSignup() {
       try {
         console.log(data)
 
-        const response = await axios.post('https://newkartbackend.onrender.com/auth/sellersignup', data)
+        const response = await axios.post('https://newkartbackend-1.onrender.com/auth/sellersignup', data)
         console.log(data)
         console.log("this is reply from server",response.data)
-        navigate('/')
+        navigate('/sellerlogin')
       }catch(err){
         if (err.response && err.response.status === 400) {
             setError("email", { type: "manual", message: err.response.data.message });
@@ -35,7 +35,7 @@ function SellerSignup() {
 
 
   return (
-    <Box className="flex  flex-col   items-center justify-center pt-20  ">
+    <Box className="flex  flex-col   items-center justify-center pt-24  ">
     <div className="p-6   border-gray-400 border shadow-lg  w-80 flex flex-col items-center  pb-11  ">
      
 

@@ -19,10 +19,9 @@ const ProductPage = () => {
 
 
   useEffect(() => {
-    // Fetch the product data based on the ID
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://newkartbackend.onrender.com/getproductdata/search?id=${id}`);
+        const response = await fetch(`https://newkartbackend-1.onrender.com/getproductdata/search?id=${id}`);
         const data = await response.json();
         console.log(data,"thid is working")
         setProduct(data);
@@ -42,31 +41,43 @@ console.log(product,'what now')
 
 const addToCart = async () => {
   try {
-    const response = await axios.post('http://localhost:3000/cart/additems', CartData);
+
+
+    if (!CartData) {
+      toast("Please log in to add items to your cart!");
+      return;
+    }
+
+
+
+
+console.log(CartData,"newcartdata")
+
+    const response = await axios.post('https://newkartbackend-1.onrender.com/cart/additems', CartData);
     console.log('Cart data added:', response.data);
     toast("Added To Cart!")
   } catch (error) {
     console.error('Error adding to cart:', error);
   }};
 
-const CartData = {
-  userId : currentUser._id,
-  items : [
-    {
-      productId : product._id,
-      productName : product.name,
-      productThumbnail : imageThumb,
-      productPrice : product.price,
-      quantity : 1
-    }
-  ]
-}
+  const CartData = currentUser && currentUser._id ? {
+    userId: currentUser._id,
+    items: [
+      {
+        productId: product._id,
+        productName: product.name,
+        productThumbnail: imageThumb,
+        productPrice: product.price,
+        quantity: 1
+      }
+    ]
+  } : null;
 
 
 console.log(CartData)
 
 if (!product || !product.images) {
-  return <div className='mt-10'>Loading...</div>; // Or any other fallback UI
+  return <div className='mt-20'>Loading...</div>; // Or any other fallback UI
 }
 
 return (
@@ -91,7 +102,7 @@ return (
 <StarRoundedIcon sx={{color:'orange'}}/>
 
           </div>
-          <button onClick={addToCart} className='bg-black text-white px-8 py-3 text-sm active:bg:gray-700 m-3 rounded-sm'>ADD TO CART</button>
+          <button onClick={addToCart} className=' bg-black text-white p-3 mt-4 hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none'>ADD TO CART</button>
           <hr className='mt-8 sm:w-4/5'/>
           <div className='text-sm text-gray-700 mt-5 flex flex-col gap-1'>
             <p>100% Original Product</p>
