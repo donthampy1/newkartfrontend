@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Typography, Slider, Checkbox, FormControlLabel, Button } from '@mui/material';
 
-function LapTopFilters({ onSubmit, category }) {
+function MobileFilters({ onSubmit, category }) {
   const [filters, setFilters] = useState({
-    priceRange: [10000, 100000],
+    priceRange: [5000, 100000],
     brand: [], 
     screenSize: [], 
-    processor: [], 
+    batteryCapacity: [], 
     storage: [] 
   });
 
@@ -19,14 +19,12 @@ function LapTopFilters({ onSubmit, category }) {
   const handleCheckboxChange = (event) => {
     const { name, value, checked } = event.target;
     setFilters((prevFilters) => {
-
       const currentValues = prevFilters[name] || [];
-      //console.log(currentValues)
       if (checked) {
         return { ...prevFilters, [name]: [...currentValues, value] };
       } else {
         return {
-       ...prevFilters,
+          ...prevFilters,
           [name]: currentValues.filter((item) => item !== value)
         };
       }
@@ -50,7 +48,7 @@ function LapTopFilters({ onSubmit, category }) {
             className='text-xl font-semibold flex items-center cursor-pointer text-gray-700 gap-2'
             onClick={() => setShowFilter(!showFilter)}
           >
-            LAPTOP FILTERS
+            MOBILE FILTERS
           </p>
 
           <div className={`border border-gray-300 p-5 py-3 mt-2 ${showFilter ? '' : 'hidden'} md:block`}>
@@ -59,14 +57,14 @@ function LapTopFilters({ onSubmit, category }) {
               value={filters.priceRange}
               onChange={handlePriceChange}
               valueLabelDisplay="auto"
-              min={10000}
+              min={5000}
               max={100000}
             />
             <Typography>{filters.priceRange[0]} - {filters.priceRange[1]}</Typography>
 
             <div>
               <p>Brand</p>
-              {['lenovo', 'acer', 'asus', 'msi', 'zebronics','dell','hp'].map((brand) => (
+              {['itel', 'poco', 'realme', 'lava', 'xiaomi','dell','hp'].map((brand) => (
                 <FormControlLabel
                   key={brand}
                   control={
@@ -84,14 +82,14 @@ function LapTopFilters({ onSubmit, category }) {
 
             <div>
               <p>Screen Size</p>
-              {[14, 16, 11, 13, 15].map((size) => (
+              {['14',' 6.7', '6.6', '6.5', '6.28'].map((size) => (
                 <FormControlLabel
                   key={size}
                   control={
                     <Checkbox
                       name="screenSize"
                       value={size}
-                      checked={filters.screenSize.includes(size.toString())}
+                      checked={filters.screenSize.includes(size)}
                       onChange={handleCheckboxChange}
                     />
                   }
@@ -101,33 +99,33 @@ function LapTopFilters({ onSubmit, category }) {
             </div>
 
             <div>
-              <p>Processor</p>
-              {['celeron', 'i3', 'i5', 'i7'].map((processor) => (
+              <p>Battery Capacity</p>
+              {['6000', '5000'].map((batteryCapacity) => (
                 <FormControlLabel
-                  key={processor}
+                  key={batteryCapacity}
                   control={
                     <Checkbox
-                      name="processor"
-                      value={processor}
-                      checked={filters.processor.includes(processor)}
+                      name="batteryCapacity"
+                      value={batteryCapacity}
+                      checked={filters.batteryCapacity.includes(batteryCapacity)}
                       onChange={handleCheckboxChange}
                     />
                   }
-                  label={processor.toUpperCase()}
+                  label={batteryCapacity}
                 />
               ))}
             </div>
 
             <div>
               <p>Storage</p>
-              {[128, 256, 512, 1024].map((storage) => (
+              {['128', '256', '512', '64'].map((storage) => (
                 <FormControlLabel
                   key={storage}
                   control={
                     <Checkbox
                       name="storage"
                       value={storage}
-                      checked={filters.storage.includes(storage.toString())}
+                      checked={filters.storage.includes(storage)}
                       onChange={handleCheckboxChange}
                     />
                   }
@@ -144,4 +142,4 @@ function LapTopFilters({ onSubmit, category }) {
   );
 }
 
-export default LapTopFilters;
+export default MobileFilters;

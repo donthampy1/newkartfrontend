@@ -166,10 +166,25 @@ function Header() {
                     SIGN IN
                   </NavLink>
                 )}
-  <NavLink to='/sellerlogin' onClick={()=>{setOpenDrawer(false)}} className='py-2 pl-6 border'>
-    BECOME A PARTNER
+  {currentUser && currentUser.isSeller && (
+                  <NavLink
+                    to="/selleraccount"
+                    onClick={() => { setOpenDrawer(false) }}
+                    className='py-2 pl-6 border'
+                  >
+                    SELLER PANEL
+                  </NavLink>
+                )}
 
-  </NavLink>
+                {!currentUser?.isSeller && (
+                  <NavLink
+                    to="/sellerlogin"
+                    onClick={() => { setOpenDrawer(false) }}
+                    className='py-2 pl-6 border'
+                  >
+                    BECOME A PARTNER
+                  </NavLink>
+                )}
 
   {currentUser && (
   <NavLink to={`/cart/${currentUser._id}`}  onClick={()=>{setOpenDrawer(false)}} className='py-2 pl-6 border'>

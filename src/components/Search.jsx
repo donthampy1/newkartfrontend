@@ -43,11 +43,11 @@ const Search = () => {
 
 
     const handleSearch = ()=>{
-        if (query) {
+        if (query ){
             navigate(`/productlist?search=${query}`);
             setSuggestion([])
-
         }
+        
     }
 
     const handleClickOutside = (event) => {
@@ -75,13 +75,17 @@ const Search = () => {
     placeholder="search..." 
     
     onChange={(e)=> setQuery(e.target.value)}/>
-    <SearchRoundedIcon  type='submit' onClick={handleSearch} className="text-gray-700" />
+    <SearchRoundedIcon  type='submit' onClick={handleSearch} className="text-gray-700 cursor-pointer" />
 
 
 </div> 
 <div className="absolute bg-gray-100  mt-5    gap-2    rounded-xl">
 {
-suggestion.map(item => <p className='  font-normal p-2 rounded-xl hover:bg-gray-200 lg:w-96 w-64  truncate' key = {item._id}>
+suggestion.map(item => <p  onClick={() => {
+    navigate(`/productlist?searchterm=${item.name}`);
+    setSuggestion([]);  
+  }}
+   className='  font-normal p-2 rounded-xl hover:bg-gray-200 lg:w-96 w-64  truncate' key = {item._id}>
     {item.name}
     </p>)
 }

@@ -8,12 +8,17 @@ import { Link } from 'react-router-dom';
 const ProductList = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search)
-  const searchTerm = searchParams.get('search')
+  const searchTerm = searchParams.get('search')  
+  const searchAuto = searchParams.get('searchterm')  
+
+  
   const [productData, setProductData] = useState([])
-  const [filterData, setFilterData] = useState({})
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true)
+  const [category , setCategory] = useState('') 
 
   useEffect(() => {
+    if (searchAuto === null) {
+
     const fetchData = async () => {
       setLoading(true)
       try {
@@ -21,41 +26,151 @@ const ProductList = () => {
           q: searchTerm,
         }).toString();
 
-        console.log(searchParams, query);
+        console.log(searchParams,  query);
 
         const response = await fetch(`https://newkartbackend-1.onrender.com/productsearch/search?${query}`);
         const data = await response.json();
         setProductData(data);
+        
+        if (data.length > 0) {
+          setCategory(data[0].category);
+        }
+
       } catch (err) {
         console.error(err);
       } finally {
-        setLoading(false); // Stop loading
+        setLoading(false); // stop loading
       }
     };
 
-    fetchData();
+    fetchData()
+  }
   }, [searchTerm]);
 
-  const handleFilterSubmit = (data) => {
-    setFilterData(data);
+
+
+  useEffect(()=>{
+
+    if (searchTerm === null) {
+      console.log(searchAuto," searchAuto running")
+    const fetchData = async () => {
+      setLoading(true)
+      try {
+        const query = new URLSearchParams({
+          q: searchAuto,
+        }).toString();
+        console.log( query);
+
+
+        const response = await fetch(`https://newkartbackend-1.onrender.com/productsearch/searchauto?${query}`)
+        const data = await response.json()
+        console.log('response recieved',data)
+        setProductData(data)
+
+
+        if (data.length > 0) {
+          setCategory(data[0].category);
+        }
+
+
+
+
+
+      } catch (err) {
+        console.log(err)
+      } finally {
+        setLoading(false) // stop loading
+      }
+    }
+
+    fetchData()
+  }
+  }, [searchAuto]);
+  
+console.log(productData)
+
+
+  const handleFilterSubmit = async (data) => {
+    let filterData = data
+
     console.log(data);
-    console.log(filterData);
-  };
+    console.log(filterData,"data from inside");
+
+    const queryParams = new URLSearchParams()
+
+    if (filterData.priceRange) {
+      queryParams.append('minPrice', filterData.priceRange[0]);
+      queryParams.append('maxPrice', filterData.priceRange[1]);
+    }
+    if (filterData.brand) {
+      queryParams.append('brand', filterData.brand);
+    }
+    if (filterData.screenSize) {
+      queryParams.append('screenSize', filterData.screenSize);
+    }
+    if (filterData.processor) {
+      queryParams.append('processor', filterData.processor);
+    }
+    if (filterData.storage) {
+      queryParams.append('storage', filterData.storage);
+    }
+
+    if (filterData.batteryCapacity) {
+      queryParams.append('batteryCapacity', filterData.batteryCapacity);
+    }
+
+
+    const queryString = queryParams.toString()
+    console.log(queryString,"from querystring")
+
+    try {
+      setLoading(true);
+      const response = await fetch(`https://newkartbackend-1.onrender.com/productsearch/filter?${queryString}`);
+      const filteredData = await response.json();
+      setProductData(filteredData);
+      console.log(filterData , "from filterdata")
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+
+    
+
+
+
+
+
+  }
+
+
+  
 
   return (
     <div className="flex flex-col  md:flex-row  gap-5 pt-10  mt-20">
       <div className='min-w-48 lg:w-[60%] md:w-[70%]'>
-        <Filterdrawer onFilterSubmit={handleFilterSubmit} />
-      </div>
+      {category && (
+            <div className='min-w-48 lg:w-[60%] md:w-[70%]'>
+              <Filterdrawer category={category} onFilterSubmit={handleFilterSubmit} />
+            </div>
+          )}      </div>
       <div className="flex-grow justify-center items-center  lg:w-[200%] p-4">
-        <h1 className="text-2xl text-gray-700 font-normal mb-4">SEARCH RESULTS FOR: "{searchTerm}"</h1>
+        
+        <div className='truncate lg:w-3/4'>
+        
+         {searchAuto === null && (
+            <h1 className="text-2xl text-gray-700 font-normal mb-4">
+              SEARCH RESULTS FOR: "{searchTerm}"
+            </h1>
+          )}       
+           </div>
         {loading ? ( 
           <p className='font-semibold'>Loading...</p>
         ) : (
-          <div className="flex flex-col gap-3">
+          <div  className="flex flex-col gap-3">
             {productData.length > 0 ? (
               productData.map((product) => (
-                <div key={product.id} className="flex justify-center">
+                <div key={product._id} className="flex justify-center">
                   <Link to={`/product/${product._id}`} className="flex justify-center">
                     <Card elevation={1} className="flex flex-row items-center w-full border border-gray-700 p-4 gap-4">
                       <div className="w-[40%]">

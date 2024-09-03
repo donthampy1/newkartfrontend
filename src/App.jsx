@@ -22,7 +22,7 @@ function App() {
 
   return (
     <>
-    <div className='px-4 sm:px-[5vw] md:px-[4vw] lg:px-[3vw]'>
+    <div className='px-4 sm:px-[5vw]  md:px-[4vw] lg:px-[3vw]'>
     <Router>
     <Header/>
     <Routes>

@@ -28,6 +28,7 @@ const MobileForm = ({ category }) => {
     const nameLower = data.name.toLowerCase();
 
     formData.append('nameLower', nameLower)
+    console.log(formData)
 
     try {
       const response = await axios.post('http://localhost:3000/addproducts/mobile/add', formData, {
@@ -80,22 +81,22 @@ const MobileForm = ({ category }) => {
       </div>
       <div>
       <label>Screen Size</label>
-      <input className="border border-gray-900 rounded-md mx-2 p-1 my-1" type="number" {...register('screenSize', { required: true })} />
+      <input className="border border-gray-900 rounded-md mx-2 p-1 my-1"   {...register('screenSize', { required: true })} />
       {errors.screenSize && <span>Screen Size is required</span>}
     </div>
     <div>
       <label>Battery Capacity</label>
-      <input  className="border border-gray-900 rounded-md mx-2 p-1 my-1" type="number"  {...register('batteryCapacity', { required: true })} />
+      <input  className="border border-gray-900 rounded-md mx-2 p-1 my-1"   {...register('batteryCapacity', { required: true })} />
       {errors.batteryLife && <span>Battery Life is required</span>}
     </div>
     <div>
       <label>Camera Specs</label>
-      <input className="border border-gray-900 rounded-md mx-2 p-1 my-1" type="number" {...register('cameraResolution', { required: true })} />
+      <input className="border border-gray-900 rounded-md mx-2 p-1 my-1"  {...register('cameraSpecs', { required: true })} />
       {errors.cameraSpecs && <span>Camera Specs are required</span>}
     </div>
     <div>
       <label>Storage </label>
-      <input className="border border-gray-900 rounded-md mx-2 p-1 my-1" type="number" {...register('storageCapacity', { required: true })} />
+      <input className="border border-gray-900 rounded-md mx-2 p-1 my-1" {...register('storage', { required: true })} />
       {errors.storageCapacity && <span>Storage Capacity is required</span>}
     </div>
     
