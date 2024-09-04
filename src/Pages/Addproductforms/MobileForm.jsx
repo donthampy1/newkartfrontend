@@ -2,10 +2,14 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 const MobileForm = ({ category }) => {
   const { register, handleSubmit, formState: { errors, isSubmitting }, setError ,reset } = useForm();
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const { currentUser } = useSelector((state) => state.user)
+
 
 
   const onSubmit = async (data) => {
@@ -25,6 +29,8 @@ const MobileForm = ({ category }) => {
       }
     }
     formData.append('category', category);
+    formData.append('sellerId', currentUser._id)
+
     const nameLower = data.name.toLowerCase();
 
     formData.append('nameLower', nameLower)

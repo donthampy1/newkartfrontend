@@ -2,10 +2,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 const LaptopForm = ({ category }) => {
   const { register, handleSubmit, formState: { errors, isSubmitting }, setError ,reset } = useForm();
   const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user)
+  console.log(currentUser._id)
+
 
   const onSubmit = async (data) => {
     const formData = new FormData();
@@ -15,10 +20,11 @@ const LaptopForm = ({ category }) => {
           formData.append('images', file);
         }
       } else {
-        formData.append(key, data[key]);
+        formData.append(key, data[key])
       }
     }
-    formData.append('category', category); 
+    formData.append('category', category)
+    formData.append('sellerId', currentUser._id)
 
     try {
       const response = await axios.post('https://newkartbackend-1.onrender.com/addproducts/laptop/add', formData, {
