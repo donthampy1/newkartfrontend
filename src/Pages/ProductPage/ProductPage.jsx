@@ -64,6 +64,7 @@ console.log(CartData,"newcartdata")
     userId: currentUser._id,
     items: [
       {
+        sellerId: product.sellerId,
         productId: product._id,
         productName: product.name,
         productThumbnail: imageThumb,

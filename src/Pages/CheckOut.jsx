@@ -14,15 +14,36 @@ const CheckOut = () => {
   const [product, setProduct] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0)
   const total = product || [].reduce((sum, item) => sum + item.productPrice, 0);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    streetAddress: '',
+    email: '',
+    city: '',
+    state: '',
+    pincode: '',
+    country: '',
+    phoneNumber: ''
+  });
+
+  
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+  
 
 
-  console.log(total,"from redux")
+  console.log(formData)
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(`https://newkartbackend-1.onrender.com/cart/search?id=${id}`);
-        console.log('startewd')
+        console.log('started')
 
         const data = await response.json();
         setProduct(data.items);
@@ -57,12 +78,14 @@ console.log(totalPrice)
     const stripe = await loadStripe('pk_test_51PstSLJfhghqKvcaYBkYe7XqKnqYFOXe58CO8fvaJeohNSgutXeHE4maQ2GeIuZkTGjUjJ26wxaDvoHk7MAdadcQ00wj9AAj6w')
     const body = {
       products : product,
-      total : totalPrice 
+      total : totalPrice ,
+      shippingDetails : formData,
+      userId :  currentUser._id
     }
     const headers = {
       "Content-Type":"application/json"
     }
-    const response = await fetch('https://newkartbackend-1.onrender.com/checkout/createcheckout',{
+    const response = await fetch('http://localhost:3000/checkout/createcheckout',{
       method : "POST",
       headers : headers,
       body : JSON.stringify(body)
@@ -86,21 +109,30 @@ console.log(totalPrice)
         <h1>DELIVERY INFORMATION</h1>
       </div>
       <div className='flex  gap-3'>
-      <input type='text' placeholder='First name' className='border border-gray-700 w-full rounded py-1.5 px-3.5'></input>
-      <input type='text' placeholder='Last name'  className='border border-gray-700 w-full rounded py-1.5 px-3.5'></input>
+      <input type='text'   name='firstName' placeholder='First name'  value={formData.firstName}
+  onChange={handleInputChange} className='border border-gray-700 w-full rounded py-1.5 px-3.5'></input>
+      <input type='text' placeholder='Last name'  value={formData.lastName}
+  onChange={handleInputChange}   name='lastName'  className='border border-gray-700 w-full rounded py-1.5 px-3.5'></input>
       </div>
-      <input type='text' placeholder='Street address' className='border border-gray-700 rounded py-1.5  px-3.5'></input>
-      <input type='text' placeholder='Delivery email' className='border border-gray-700 rounded py-1.5 px-3.5'></input>
+      <input type='text' placeholder='Street address'   name='streetAddress'   value={formData.streetAddress}
+  onChange={handleInputChange} className='border border-gray-700 rounded py-1.5  px-3.5'></input>
+      <input type='text'   name='email'  placeholder='Delivery email'  value={formData.email}
+  onChange={handleInputChange} className='border border-gray-700 rounded py-1.5 px-3.5'></input>
       <div className='flex gap-3'>
-      <input type='text' placeholder='City' className='border border-gray-700 rounded py-1.5 w-full px-3.5'></input>
-      <input type='text' placeholder='State'  className='border border-gray-700 rounded py-1.5 w-full px-3.5'></input>
+      <input type='text' placeholder='City'   name='city'  value={formData.city}
+  onChange={handleInputChange} className='border border-gray-700 rounded py-1.5 w-full px-3.5'></input>
+      <input type='text' placeholder='State'   name='state'  value={formData.state}
+  onChange={handleInputChange} className='border border-gray-700 rounded py-1.5 w-full px-3.5'></input>
       </div>
       <div className='flex gap-3'>
-      <input type='number' placeholder='Pincode' className='border border-gray-700 w-full rounded py-1.5 px-3.5'></input>
-      <input type='text' placeholder='Country'  className='border border-gray-700 w-full rounded py-1.5 px-3.5'></input>
+      <input type='number' placeholder='Pincode'   name='pincode'  value={formData.pincode}
+  onChange={handleInputChange} className='border border-gray-700 w-full rounded py-1.5 px-3.5'></input>
+      <input type='text' placeholder='Country'   name='country'  value={formData.country}
+  onChange={handleInputChange}  className='border border-gray-700 w-full rounded py-1.5 px-3.5'></input>
       </div>
       <div className='flex gap-3'>
-      <input type='number' placeholder='Number' className='border border-gray-700 w-full rounded py-1.5 px-3.5'></input>
+      <input type='number' placeholder='Number'   name='phoneNumber'   value={formData.phoneNumber}
+  onChange={handleInputChange} className='border border-gray-700 w-full rounded py-1.5 px-3.5'></input>
       <input type='text' placeholder='State'  className='border border-gray-700 rounded w-full py-1.5 px-3.5'></input>
       </div>
 
