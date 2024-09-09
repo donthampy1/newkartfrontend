@@ -31,7 +31,7 @@ function Login() {
       
         dispatch(signInSuccess(response.data))
         console.log(response.data,"received")
-        navigate(-1);
+        navigate('/');
       }catch(err){
 
         if (err.response && err.response.status === 404 ) {

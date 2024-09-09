@@ -24,6 +24,7 @@ const CartPage = () => {
       try {
         const response = await fetch(`https://newkartbackend-1.onrender.com/cart/search?id=${id}`);
         const data = await response.json();
+        if (data.items && data.items.length > 0) {
         setProduct(data.items);
         dispatch(setCartData(data.items))
         console.log(data.items,"thid is working")
@@ -31,7 +32,8 @@ const CartPage = () => {
 
         const total = data.items.reduce((sum, item) => sum + item.productPrice, 0);
         setTotalPrice(total);
-        setLoading(false); 
+        setLoading(false)
+        } 
 
       } catch (error) {
         console.error('Error fetching product:', error);
