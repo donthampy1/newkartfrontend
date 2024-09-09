@@ -41,21 +41,42 @@ function SellerAccount() {
 
   return (
       <>
-<div>
-<button className=' w-full bg-black mt-20 cursor-pointer text-white p-2  hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none' onClick={handleSignout} > Signout</button>
+<div className='mt-20'>
+
     
 </div>
     
     
-      <button className="text-white bg-black mt-6   border-2  
-      hover:bg-gray-700 hover:text-white hover:scale-110 transition-transform duration-1000">
+      <button className=" w-full bg-black mt-20 cursor-pointer text-white p-2  hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none">
           <Link to="addproducts">
               <Typography>
-                  Add products  <AccountCircleIcon />
+                  Add products  
               </Typography>
           </Link>
       </button>
       <Outlet />
+      <div>
+
+    
+</div>
+<div>
+<button className=' w-full bg-black mt-20 cursor-pointer text-white p-2  hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none' onClick={()=>navigate('/selleraccount/editproducts')} > Edit Products</button>
+
+
+
+<button className=' w-full bg-black mt-20 cursor-pointer text-white p-2  hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none' onClick={()=>navigate('/selleraccount/sellerorders')} >Orders</button>
+
+
+<button className=' w-full bg-black mt-20 cursor-pointer text-white p-2  hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none' onClick={handleSignout} > Signout</button>
+
+
+
+
+
+
+
+</div>
+
       </>)
 }
 

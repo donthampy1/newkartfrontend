@@ -13,8 +13,9 @@ const Profile = () => {
 
     const handleSignout = async ()=>{
         try {
-            dispatch(signOut())
+           
             await fetch ('https://newkartbackend-1.onrender.com/auth/signout')
+            dispatch(signOut())
             console.log('working')
             navigate('/')
 

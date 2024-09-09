@@ -15,14 +15,15 @@ import ProductPage from './Pages/ProductPage/ProductPage';
 import CartPage from './Pages/CartPage';
 import CheckOut from './Pages/CheckOut';
 import Footer from './components/Footer/Footer';
-
+import EditproductsPage from './Pages/SellerPages/EditproductsPage';
+import SellerOrders from './Pages/SellerPages/SellerOrders';
 
 
 function App() {
 
   return (
     <>
-    <div className='px-4 sm:px-[5vw]  md:px-[4vw] lg:px-[3vw]'>
+    <div className='px-4 sm:px-[5vw]   md:px-[4vw] lg:px-[3vw]'>
     <Router>
     <Header/>
     <Routes>
@@ -39,7 +40,10 @@ function App() {
       <Route path='/selleraccount' element={<SellerAccount/>} >
       <Route path='addproducts' element={<Addproducts/>} />
       </Route>
-      
+      <Route path='/selleraccount/editproducts' element={<EditproductsPage/>} />
+      <Route path='/selleraccount/sellerorders' element={<SellerOrders/>} />
+
+
       <Route path='/productlist' element={<ProductList/>}/>
       
       <Route path='/product/:id' element={<ProductPage/>}/>

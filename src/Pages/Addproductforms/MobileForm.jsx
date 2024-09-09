@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 const MobileForm = ({ category }) => {
@@ -39,7 +40,7 @@ const MobileForm = ({ category }) => {
     console.log(formData)
 
     try {
-      const response = await axios.post('http://localhost:3000/addproducts/mobile/add', formData, {
+      const response = await axios.post('https://newkartbackend-1.onrender.com/addproducts/mobile/add', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -56,61 +57,74 @@ const MobileForm = ({ category }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>Name</label>
-        <input className="border border-gray-900 rounded-md mx-2 p-1 my-1" {...register('name', { required: true })} />
-        {errors.name && <span>Name is required</span>}
+    <form className='border-t flex flex-col  border-gray-300 p-5 gap-3 py-3 mt-2 ' onSubmit={handleSubmit(onSubmit)}>
+      <div className='flex gap-2'>
+      <p className='text-xl  mt-1'>Name:</p>
+        <input className="px-3 py-2 border border-gray-700 w-full" {...register('name', { required: true })} />
       </div>
-      <div>
-        <label>Brand</label>
-        <input className="border border-gray-900 rounded-md mx-2 p-1 my-1" {...register('brand', { required: true })} />
-        {errors.brand && <span>Brand is required</span>}
-      </div>
-      <div>
-        <label>Price</label>
-        <input className="border border-gray-900 rounded-md mx-2 p-1 my-1" type="number" {...register('price', { required: true })} />
-        {errors.price && <span>Price is required</span>}
-      </div>
-      <div>
-        <label>Description</label>
-        <textarea className="border border-gray-900 rounded-md mx-2 p-1 my-1" {...register('description', { required: true })} />
-        {errors.description && <span>Description is required</span>}
-      </div>
-      <div>
-        <label>Images</label>
-        <input className="border border-gray-900 rounded-md mx-2 p-1 my-1" type="file" {...register('images', { required: true })} multiple />
-        {errors.images && <span>Images are required</span>}
-      </div>
-      <div>
-        <label>Stock</label>
-        <input className="border border-gray-900 rounded-md mx-2 p-1 my-1" type="number" {...register('stock', { required: true })} />
-        {errors.stock && <span>Stock is required</span>}
-      </div>
-      <div>
-      <label>Screen Size</label>
-      <input className="border border-gray-900 rounded-md mx-2 p-1 my-1"   {...register('screenSize', { required: true })} />
-      {errors.screenSize && <span>Screen Size is required</span>}
-    </div>
-    <div>
-      <label>Battery Capacity</label>
-      <input  className="border border-gray-900 rounded-md mx-2 p-1 my-1"   {...register('batteryCapacity', { required: true })} />
-      {errors.batteryLife && <span>Battery Life is required</span>}
-    </div>
-    <div>
-      <label>Camera Specs</label>
-      <input className="border border-gray-900 rounded-md mx-2 p-1 my-1"  {...register('cameraSpecs', { required: true })} />
-      {errors.cameraSpecs && <span>Camera Specs are required</span>}
-    </div>
-    <div>
-      <label>Storage </label>
-      <input className="border border-gray-900 rounded-md mx-2 p-1 my-1" {...register('storage', { required: true })} />
-      {errors.storageCapacity && <span>Storage Capacity is required</span>}
-    </div>
-    
-      <button type="submit"  className='bg-green-700 text-white p-2 rounded-md' disabled={isSubmitting}>{isSubmitting ? 'uploading ' : 'upload'} </button>
+      {errors.name && <span>Name is required</span>}
 
-      
+      <div className='flex gap-2'>
+      <p className='text-xl  mt-1'>Brand:</p>
+        <input className="px-3 py-2 border border-gray-700 w-full" {...register('brand', { required: true })} />
+      </div>
+      {errors.brand && <span>Brand is required</span>}
+
+      <div className='flex gap-2'>
+      <p className='text-xl  mt-1'>Price:</p>
+        <input className="px-3 py-2 border border-gray-700 w-full" type="number" {...register('price', { required: true })} />
+      </div>
+      {errors.price && <span>Price is required</span>}
+
+      <div className='flex gap-2'>
+      <p className='text-xl  mt-1'>Description:</p>
+        <textarea className="px-3 py-2 border border-gray-700 w-full" {...register('description', { required: true })} />
+      </div>
+      {errors.description && <span>Description is required</span>}
+
+      <div className='flex gap-2'>
+      <p className='text-xl  mt-1'>Images:</p>
+        <input className="px-3 py-2 border border-gray-700 w-full" type="file" {...register('images', { required: true })} multiple />
+      </div>
+      {errors.images && <span>Images are required</span>}
+
+      <div className='flex gap-2'>
+      <p className='text-xl  mt-1'>Stock:</p>
+        <input className="px-3 py-2 border border-gray-700 w-full" type="number" {...register('stock', { required: true })} />
+      </div>
+      {errors.stock && <span>Stock is required</span>}
+
+      <div className='flex gap-2'>
+      <p className='text-xl w-36 mt-1'>Screen Size:</p>
+      <input className="px-3 py-2 border border-gray-700 w-full"   {...register('screenSize', { required: true })} />
+    </div>
+    {errors.screenSize && <span>Screen Size is required</span>}
+
+    <div className='flex gap-2'>
+    <p className='text-xl w-60 mt-1'>Battery Capacity:</p>
+    <input  className="px-3 py-2 border border-gray-700 w-full"   {...register('batteryCapacity', { required: true })} />
+    </div>
+    {errors.batteryLife && <span>Battery Life is required</span>}
+
+    <div className='flex gap-2'>
+    <p className='text-xl  mt-1'>CameraSpecs:</p>
+    <input className="px-3 py-2 border border-gray-700 w-full"  {...register('cameraSpecs', { required: true })} />
+    </div>
+    {errors.cameraSpecs && <span>Camera Specs are required</span>}
+
+    <div className='flex gap-2'>
+    <p className='text-xl  mt-1'>Storage:</p>
+    <input className="px-3 py-2 border border-gray-700 w-full" {...register('storage', { required: true })} />
+    </div>
+    {errors.storage && <span>Storage Capacity is required</span>}
+
+    
+      <button type="submit"  className=' w-full bg-black text-white p-2 mt-4 hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none' disabled={isSubmitting}>{isSubmitting ? 'uploading ' : 'upload'} </button>
+
+      <Link to='/selleraccount' >
+      <button type="submit"  className=' w-full bg-black text-white p-2 mt-4 hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none' >close</button>
+
+      </Link>
 
 
     </form>

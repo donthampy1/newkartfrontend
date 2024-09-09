@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const ProductPage = () => {
-  const { id } = useParams();  // Extract the product ID from the URL
+  const { id } = useParams();  
   const [product, setProduct] = useState([]);
   const [image,setImage] = useState('')
   const [imageThumb,setImageThumb] =useState('')
@@ -37,6 +37,8 @@ const ProductPage = () => {
     fetchProduct();
   }, []);
 console.log(product,'what now')
+console.log(product.category,'what now')
+
 
 
 const addToCart = async () => {
@@ -51,7 +53,7 @@ const addToCart = async () => {
 
 
 
-console.log(CartData,"newcartdata")
+console.log(CartData,"newestcartdata")
 
     const response = await axios.post('https://newkartbackend-1.onrender.com/cart/additems', CartData);
     console.log('Cart data added:', response.data);
@@ -69,7 +71,8 @@ console.log(CartData,"newcartdata")
         productName: product.name,
         productThumbnail: imageThumb,
         productPrice: product.price,
-        quantity: 1
+        quantity: 1,
+        category: product.category
       }
     ]
   } : null;
@@ -78,7 +81,7 @@ console.log(CartData,"newcartdata")
 console.log(CartData)
 
 if (!product || !product.images) {
-  return <div className='mt-20'>Loading...</div>; // Or any other fallback UI
+  return <div className='mt-20'>Loading...</div>
 }
 
 return (

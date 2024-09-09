@@ -26,7 +26,7 @@ const Hero = () => {
 
       const images = [
         "https://mac-center.com/cdn/shop/files/IMG-10942135_5921f7a6-0285-44f0-8788-1daa11c5419a.jpg?v=1723752285",
-        "https://hgworld.in/wp-content/uploads/2023/12/2nd-image.jpeg",
+        "https://5.imimg.com/data5/SELLER/Default/2023/5/312229263/WS/LX/RZ/161643787/mi-108-cm-43-inches-5a-series-full-hd-smart-android-led-tv-1000x1000.jpg",
         "https://dlcdnwebimgs.asus.com/gain/29e7dcb9-33d7-4bfa-bdc5-97be601e379f/w800",
         "https://d2xamzlzrdbdbn.cloudfront.net/products/29670d9b-16c0-419a-83e1-72b0d90537e724181113.jpg",
       ];
@@ -57,7 +57,7 @@ const Hero = () => {
             <div className='w-full sm:w-1/2'>
         <Slider {...settings}>
           {images.map((img, index) => (
-            <div key={index}>
+            <div key={index} className='justify-center'>
               <img src={img} alt={`Slide ${index + 1}`} className='w-full h-full object-cover' />
             </div>
           ))}
