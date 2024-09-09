@@ -191,7 +191,7 @@ console.log(id)
 
 
     if (loading) {
-      return <div className="mt-20">Loading...</div>; 
+      return <div className="mt-20">Not Found</div>; 
     }
 
   return (

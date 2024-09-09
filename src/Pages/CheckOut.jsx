@@ -85,7 +85,7 @@ console.log(totalPrice)
     const headers = {
       "Content-Type":"application/json"
     }
-    const response = await fetch('http://localhost:3000/checkout/createcheckout',{
+    const response = await fetch('https://newkartbackend-1.onrender.com/checkout/createcheckout',{
       method : "POST",
       headers : headers,
       body : JSON.stringify(body)
