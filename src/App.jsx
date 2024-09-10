@@ -52,6 +52,8 @@ function App() {
       <Route path='/cart/:id' element={<CartPage/>}/>
       <Route path='/cart/checkout/:id' element={<CheckOut/>}/>
       <Route path='/orders/:id' element={<Orders/>}/>
+      <Route path='https://newkartfrontend.vercel.app/orders/:id' element={<Orders/>}/>
+
 
 
 
