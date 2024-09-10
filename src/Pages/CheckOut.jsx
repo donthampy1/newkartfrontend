@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 const CheckOut = () => {
 
   const { currentUser } = useSelector((state) => state.user)
+  const [loading, setLoading] = useState(true); 
 
   const [buttonSelect,setButtonSelect] = useState('stripe')
   const { id } = useParams()
@@ -46,12 +47,17 @@ const CheckOut = () => {
         console.log('started')
 
         const data = await response.json();
+        if (data.items && data.items.length > 0) {
+
         setProduct(data.items);
         console.log(data,"thid is working")
 
 
         const total = data.items.reduce((sum, item) => sum + item.productPrice, 0);
-        setTotalPrice(total);
+        setTotalPrice(total)
+        setLoading(false)
+
+        }
 
       } catch (error) {
         console.error('Error fetching product:', error);
@@ -99,6 +105,10 @@ console.log(totalPrice)
     if(result.error){
       console.log(result.error)
     }
+  }
+
+  if (loading) {
+    return <div className="mt-20">Not Found</div>; 
   }
 
 

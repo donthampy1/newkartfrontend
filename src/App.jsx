@@ -17,6 +17,7 @@ import CheckOut from './Pages/CheckOut';
 import Footer from './components/Footer/Footer';
 import EditproductsPage from './Pages/SellerPages/EditproductsPage';
 import SellerOrders from './Pages/SellerPages/SellerOrders';
+import Orders from './Pages/Orders'
 
 
 function App() {
@@ -50,6 +51,8 @@ function App() {
       
       <Route path='/cart/:id' element={<CartPage/>}/>
       <Route path='/cart/checkout/:id' element={<CheckOut/>}/>
+      <Route path='/orders/:id' element={<Orders/>}/>
+
 
 
 
