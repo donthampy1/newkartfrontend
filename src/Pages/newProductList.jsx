@@ -88,6 +88,7 @@ const ProductList = () => {
   }, [searchAuto]);
   
 console.log(productData)
+console.log(category,"category recieved")
 
 
   const handleFilterSubmit = async (data) => {
@@ -118,6 +119,24 @@ console.log(productData)
     if (filterData.batteryCapacity) {
       queryParams.append('batteryCapacity', filterData.batteryCapacity);
     }
+
+    if (filterData.ram) {
+      queryParams.append('ram', filterData.ram)
+    }
+
+    if (category) {
+      queryParams.append('category', category)
+    }
+
+    if (filterData.technology) {
+      queryParams.append('technology', filterData.technology)
+    }
+
+    if (filterData.resolution) {
+      queryParams.append('resolution', filterData.resolution)
+    }
+
+
 
 
     const queryString = queryParams.toString()
@@ -150,7 +169,7 @@ console.log(productData)
     <div className="flex flex-col  md:flex-row  gap-5 pt-10  mt-20">
       <div className='min-w-48 lg:w-[60%] md:w-[70%]'>
       {category && (
-            <div className='min-w-48 lg:w-[60%] md:w-[70%]'>
+            <div className='min-w-48 lg:w-[100%] md:w-[70%]'>
               <Filterdrawer category={category} onFilterSubmit={handleFilterSubmit} />
             </div>
           )}      </div>
@@ -159,7 +178,7 @@ console.log(productData)
         <div className='truncate lg:w-3/4'>
         
          {searchAuto === null && (
-            <h1 className="text-2xl text-gray-700 font-normal mb-4">
+            <h1 className="text-xl sm:text-2xl  text-gray-700 font-normal mb-4">
               SEARCH RESULTS FOR: "{searchTerm}"
             </h1>
           )}       

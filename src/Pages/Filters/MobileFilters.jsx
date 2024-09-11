@@ -64,7 +64,7 @@ function MobileFilters({ onSubmit, category }) {
 
             <div>
               <p>Brand</p>
-              {['itel', 'poco', 'realme', 'lava', 'xiaomi','dell','hp'].map((brand) => (
+              {['itel', 'poco', 'realme', 'lava', 'xiaomi',].map((brand) => (
                 <FormControlLabel
                   key={brand}
                   control={
@@ -82,7 +82,7 @@ function MobileFilters({ onSubmit, category }) {
 
             <div>
               <p>Screen Size</p>
-              {['14',' 6.7', '6.6', '6.5', '6.28'].map((size) => (
+              {['6.8','6.67', '6.9', '6', '6.2'].map((size) => (
                 <FormControlLabel
                   key={size}
                   control={
@@ -134,7 +134,7 @@ function MobileFilters({ onSubmit, category }) {
               ))}
             </div>
 
-            <Button type="submit">Apply Filters</Button>
+            <button type="submit" className='bg-black  text-white   px-5 py-3 text-md active:bg:gray-700 m-3 ml-0  rounded-sm'>Apply Filters</button>
           </div>
         </form>
       </div>

@@ -1,32 +1,30 @@
 import React, { useState } from 'react';
 import { Typography, Slider, Checkbox, FormControlLabel, Button } from '@mui/material';
 
-function LapTopFilters({ onSubmit, category }) {
+function MobileFilters({ onSubmit, category }) {
   const [filters, setFilters] = useState({
-    priceRange: [10000, 100000],
+    priceRange: [5000, 1000000],
     brand: [], 
     screenSize: [], 
-    processor: [], 
-    storage: [] 
-  });
+    technology: [], 
+    resolution: [] 
+  })
 
-  const [showFilter, setShowFilter] = useState(false);
+  const [showFilter, setShowFilter] = useState(false)
 
   const handlePriceChange = (event, newValue) => {
-    setFilters((prevFilters) => ({ ...prevFilters, priceRange: newValue }));
-  };
+    setFilters((prevFilters) => ({ ...prevFilters, priceRange: newValue }))
+  }
 
   const handleCheckboxChange = (event) => {
-    const { name, value, checked } = event.target;
+    const { name, value, checked } = event.target
     setFilters((prevFilters) => {
-
-      const currentValues = prevFilters[name] || [];
-      //console.log(currentValues)
+      const currentValues = prevFilters[name] || []
       if (checked) {
-        return { ...prevFilters, [name]: [...currentValues, value] };
+        return { ...prevFilters, [name]: [...currentValues, value] }
       } else {
         return {
-       ...prevFilters,
+          ...prevFilters,
           [name]: currentValues.filter((item) => item !== value)
         };
       }
@@ -50,23 +48,23 @@ function LapTopFilters({ onSubmit, category }) {
             className='text-xl font-semibold flex items-center cursor-pointer text-gray-700 gap-2'
             onClick={() => setShowFilter(!showFilter)}
           >
-            LAPTOP FILTERS
+            TELEVISION FILTERS
           </p>
 
-          <div className={`border border-gray-700 p-5 py-3 mt-2 ${showFilter ? '' : 'hidden'} md:block`}>
-            <p className='text-lg'>Price Range</p>
+          <div className={`border border-gray-300 p-5 py-3 mt-2 ${showFilter ? '' : 'hidden'} md:block`}>
+            <p>Price Range</p>
             <Slider
               value={filters.priceRange}
               onChange={handlePriceChange}
               valueLabelDisplay="auto"
-              min={10000}
+              min={5000}
               max={100000}
             />
             <Typography>{filters.priceRange[0]} - {filters.priceRange[1]}</Typography>
 
             <div>
-              <p className='text-lg'>Brand</p>
-              {['lenovo', 'acer', 'asus', 'msi', 'zebronics','dell','hp'].map((brand) => (
+              <p>Brand</p>
+              {['samsung', 'xiaomi', ].map((brand) => (
                 <FormControlLabel
                   key={brand}
                   control={
@@ -83,15 +81,15 @@ function LapTopFilters({ onSubmit, category }) {
             </div>
 
             <div>
-              <p className='text-lg'>Screen Size</p>
-              {[14, 16, 11, 13, 15].map((size) => (
+              <p>Screen Size</p>
+              {['50','32', ].map((size) => (
                 <FormControlLabel
                   key={size}
                   control={
                     <Checkbox
                       name="screenSize"
                       value={size}
-                      checked={filters.screenSize.includes(size.toString())}
+                      checked={filters.screenSize.includes(size)}
                       onChange={handleCheckboxChange}
                     />
                   }
@@ -101,37 +99,37 @@ function LapTopFilters({ onSubmit, category }) {
             </div>
 
             <div>
-              <p className='text-lg'>Processor</p>
-              {['celeron', 'i3', 'i5', 'i7'].map((processor) => (
+              <p>Technology</p>
+              {['HDR10', 'LED'].map((technology) => (
                 <FormControlLabel
-                  key={processor}
+                  key={technology}
                   control={
                     <Checkbox
-                      name="processor"
-                      value={processor}
-                      checked={filters.processor.includes(processor)}
+                      name="technology"
+                      value={technology}
+                      checked={filters.technology.includes(technology)}
                       onChange={handleCheckboxChange}
                     />
                   }
-                  label={processor.toUpperCase()}
+                  label={technology}
                 />
               ))}
             </div>
 
             <div>
-              <p className='text-lg'>Storage</p>
-              {[128, 256, 512, 1024].map((storage) => (
+              <p>Resolution</p>
+              {['4k', '720p', '1080p', '1440p'].map((resolution) => (
                 <FormControlLabel
-                  key={storage}
+                  key={resolution}
                   control={
                     <Checkbox
-                      name="storage"
-                      value={storage}
-                      checked={filters.storage.includes(storage.toString())}
+                      name="resolution"
+                      value={resolution}
+                      checked={filters.resolution.includes(resolution)}
                       onChange={handleCheckboxChange}
                     />
                   }
-                  label={`${storage}GB`}
+                  label={resolution}
                 />
               ))}
             </div>
@@ -144,4 +142,4 @@ function LapTopFilters({ onSubmit, category }) {
   );
 }
 
-export default LapTopFilters;
+export default MobileFilters;

@@ -90,7 +90,7 @@ return (
       <div className='flex-1 flex flex-col-reverse md:fl gap-3  sm:flex-row'>
         <div className='flex  sm:flex-col items-center  sm:overflow-y-scroll justify-between sm:justify-normal order-2 md:order-1 sm:order-1 md:w-[8%] lg:w-[8%]   gap-2  w-[20%]'>
           {product.images.map((item, index) => (
-            <img src={item} key={index} onClick={()=>setImage(item)} className=' cursor-pointer'></img>
+            <img src={item} key={index} onClick={()=>setImage(item)} className=' cursor-pointer border p-1'></img>
           ))}
         </div>
         <div className='w-[70%] sm:order-2 md:order-2 order-2  lg:w-[35%] md:w-[40%] sm:w-[80%]   '>
@@ -98,19 +98,71 @@ return (
         </div>
         <div className='flex-1 sm:order-3 md:order-3'>
           <h1 className='font-normal   text-gray-700 text-2xl mt-2 p-3'>{product.name}</h1>
-          <div className='flex items-center gap-1 m-2 '>
-<StarRoundedIcon sx={{color:'orange'}}/>
-<StarRoundedIcon sx={{color:'orange'}}/>
-<StarRoundedIcon sx={{color:'orange'}}/>
-<StarRoundedIcon sx={{color:'orange'}}/>
-<StarRoundedIcon sx={{color:'orange'}}/>
+          <div className='flex flex-col  m-2 '>
+          {product.brand && (
+      <div className="product-ram">
+        <p className='font-medium text-gray-700 pl-2'>Brand: {product.brand} </p> 
+      </div>
+    )}
+    {product.resolution && (
+      <div className="product-ram">
+        <p className='font-medium text-gray-700 pl-2'>Resolution: {product.resolution} </p> 
+      </div>
+    )}
+
+{product.ram && (
+      <div className="product-ram">
+        <p className='font-medium text-gray-700 pl-2'>Ram: {`${product.ram} GB`} </p> 
+      </div>
+    )}
+    {product.storage && (
+      <div className="product-ram">
+        <p className='font-medium text-gray-700 pl-2'>Storage: {`${product.storage} GB`} </p> 
+      </div>
+    )}
+   
+
+{product.screenSize && (
+      <div className="product-ram">
+        <p className='font-medium text-gray-700 pl-2'>Screensize: {`${product.screenSize}"`} </p> 
+      </div>
+    )}
+     {product.batteryCapacity && (
+      <div className="product-ram">
+        <p className='font-medium text-gray-700 pl-2'>Battery: {`${product.batteryCapacity} mah`} </p> 
+      </div>
+    )}
+    {product.processor && (
+      <div className="product-ram">
+        <p className='font-medium text-gray-700 pl-2'>Processor: {`${product.processor}`} </p> 
+      </div>
+    )}
+
+    {product.technology && (
+      <div className="product-ram">
+        <p className='font-medium text-gray-700 pl-2'>Technology and Certification: {`${product.technology}`} </p> 
+      </div>
+    )}
+    {product.graphicsCard && (
+      <div className="product-ram">
+        <p className='font-medium text-gray-700  pl-2'>Graphics: {`${product.graphicsCard}`} </p> 
+      </div>
+    )}
+
+{product.price && (
+      <div className="product-ram">
+        <p className='font-bold text-gray-700 mt-3 text-lg pl-2'>Price: {`${product.price} Rs`} </p> 
+      </div>
+    )}
+    
+    
 
           </div>
-          <button onClick={addToCart} className=' bg-black text-white p-3 mt-4 hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none'>ADD TO CART</button>
-          <hr className='mt-8 sm:w-4/5'/>
-          <div className='text-sm text-gray-700 mt-5 flex flex-col gap-1'>
+          <button onClick={addToCart} className=' bg-black text-white p-3 m-3 mt-4 hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none'>ADD TO CART</button>
+          <hr className='mt-2 sm:w-4/5'/>
+          <div className='text-sm text-gray-700 pl-3 mt-2 flex flex-col gap-1'>
             <p>100% Original Product</p>
-            <p>Top Trusted Brand</p>
+            <p>Top Rated Brand</p>
 
           </div>
         </div>

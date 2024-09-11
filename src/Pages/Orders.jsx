@@ -90,7 +90,8 @@ if (loading) {
         
 <div><div className=' flex   justify-center'>
 
-<button onClick={()=>{navigate('/')}}  className='bg-black  text-white ml-56  px-8 py-5 text-sm active:bg:gray-700 m-3  rounded-sm'>CONTINUE SHOPPING </button>
+<button onClick={()=>{navigate('/')}}  
+className='bg-black  text-white ml-56  px-8 py-5 text-sm active:bg:gray-700 m-3  rounded-sm'>CONTINUE SHOPPING </button>
           </div>
         </div>
 
