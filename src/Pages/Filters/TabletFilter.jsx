@@ -64,7 +64,7 @@ function MobileFilters({ onSubmit, category }) {
 
             <div>
               <p>Brand</p>
-              {['samsung', 'xiaomi', ].map((brand) => (
+              {['samsung', 'xiaomi','lenovo','honor','oneplus' ].map((brand) => (
                 <FormControlLabel
                   key={brand}
                   control={
@@ -82,7 +82,7 @@ function MobileFilters({ onSubmit, category }) {
 
             <div>
               <p>Screen Size</p>
-              {['11','9', ].map((size) => (
+              {['11','9','8','12' ].map((size) => (
                 <FormControlLabel
                   key={size}
                   control={
@@ -100,7 +100,7 @@ function MobileFilters({ onSubmit, category }) {
 
             <div>
               <p>Ram</p>
-              {['3', '8'].map((ram) => (
+              {['3', '8', '6'].map((ram) => (
                 <FormControlLabel
                   key={ram}
                   control={

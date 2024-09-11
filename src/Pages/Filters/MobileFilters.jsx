@@ -64,7 +64,7 @@ function MobileFilters({ onSubmit, category }) {
 
             <div>
               <p>Brand</p>
-              {['itel', 'poco', 'realme', 'lava', 'xiaomi',].map((brand) => (
+              {['itel', 'poco', 'realme', 'lava', 'xiaomi','samsung','apple','oneplus','oppo'].map((brand) => (
                 <FormControlLabel
                   key={brand}
                   control={
