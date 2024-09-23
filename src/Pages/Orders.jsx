@@ -13,6 +13,8 @@ const CartPage = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(true); 
     const { currentUser } = useSelector((state) => state.user)
+    const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
+
 
 
 
@@ -55,9 +57,11 @@ if (loading) {
 
   return (
     <>
-    <div className='mt-20 text-gray-700  '>
+    <div className='mt-16 pt-4 text-gray-700  '>
        <div className='text-2xl mb-3'>
-        <h1>Your Orders</h1>
+       <h1 className={`${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+  Your Orders
+</h1>
        </div>
        <div >
        {product.map(products => (

@@ -18,14 +18,18 @@ import Footer from './components/Footer/Footer';
 import EditproductsPage from './Pages/SellerPages/EditproductsPage';
 import SellerOrders from './Pages/SellerPages/SellerOrders';
 import Orders from './Pages/Orders'
+import { useSelector } from 'react-redux'
+
 
 
 function App() {
+  const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
+
 
   return (
     <>
-    <div className='px-4 sm:px-[5vw]   md:px-[4vw] lg:px-[3vw]'>
-    <Router>
+<div className={`px-4 sm:px-[5vw] md:px-[4vw] lg:px-[3vw] ${isDarkMode ? 'bg-white' : 'bg-zinc-900'}`}>
+<Router>
     <Header/>
     <Routes>
       <Route path='/' element={<Home/>} />

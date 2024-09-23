@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form"
 import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
 import GoogleAuth from "../../components/Header/GoogleAuth";
+import { useSelector } from 'react-redux'
+
 
 
 function Signup() {
@@ -12,6 +14,8 @@ function Signup() {
 
     const {register,handleSubmit,formState:{ errors,isSubmitting},setError } = useForm()
     const navigate = useNavigate()
+    const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
+
 
 
 
@@ -39,7 +43,8 @@ function Signup() {
     <div className="p-6  border-gray-400 border shadow-lg  w-80 flex flex-col items-center  pb-11   ">
       
 
-      <h1 className="text-2xl py-2">Sign Up</h1>
+    <h1 className={`text-3xl py-5 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+    Sign Up</h1>
       <Box>
         <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -102,7 +107,7 @@ function Signup() {
           <button 
           type="submit"
           disabled={isSubmitting}
-          className=" w-full bg-black text-white p-2 mt-4 hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none">{isSubmitting ? "Signing up ..." :"Signup"}</button>
+          className=" w-full bg-black text-white p-2 mt-4 hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none">{isSubmitting ? "Signing up ..." :"SIGN UP"}</button>
 
 
           <GoogleAuth setError={setError}/>
@@ -115,7 +120,7 @@ function Signup() {
        <button  
        className=" mt-2 hover:text-blue-900 ">
             <Link to='/signin'>
-            <p className=""> Already have an account ?</p>
+            <p  className={` ${isDarkMode ? 'text-gray-700' : 'text-white'}`}> Already have an account ?</p>
             </Link>
           </button>
 

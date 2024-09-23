@@ -8,8 +8,8 @@ import { useParams } from 'react-router-dom';
 const CheckOut = () => {
 
   const { currentUser } = useSelector((state) => state.user)
-  const [loading, setLoading] = useState(true); 
-
+  const [loading, setLoading] = useState(true)
+  const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
   const [buttonSelect,setButtonSelect] = useState('stripe')
   const { id } = useParams()
   const [product, setProduct] = useState(null);
@@ -108,15 +108,17 @@ console.log(totalPrice)
   }
 
   if (loading) {
-    return <div className="mt-20">Not Found</div>; 
+    return <div className="mt-16 pt-4">Not Found</div>; 
   }
 
 
   return (
-    <div className='mt-20 flex flex-col sm:flex-row justify-around gap-4 pt-5 sm:pt-14 min-h-[80vh] '>
+    <div className='mt-16 flex flex-col sm:flex-row justify-around gap-4 pt-5 sm:pt-14 min-h-[80vh] '>
     <div className='flex flex-col    gap-4 w-full sm:max-w-[480px]'>
       <div className='text-xl sm:text-2xl my-3' >
-        <h1>DELIVERY INFORMATION</h1>
+      <h1 className={`${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+  DELIVERY INFORMATION
+</h1>
       </div>
       <div className='flex  gap-3'>
       <input type='text'   name='firstName' placeholder='First name'  value={formData.firstName}
@@ -147,8 +149,8 @@ console.log(totalPrice)
       </div>
 
     </div>
-    <div className='mt-8 '>
-      <div className='mt-8  min-w-80'>
+    <div className={`mt-8 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+    <div className='mt-8  min-w-80'>
 
       <div className='text-2xl'>
             <h1 className=''>CART TOTAL</h1>

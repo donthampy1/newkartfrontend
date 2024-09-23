@@ -9,7 +9,9 @@ const ProductList = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search)
   const searchTerm = searchParams.get('search')  
-  const searchAuto = searchParams.get('searchterm')  
+  const searchAuto = searchParams.get('searchterm') 
+  const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
+ 
 
   
   const [productData, setProductData] = useState([])
@@ -166,7 +168,7 @@ console.log(category,"category recieved")
   
 
   return (
-    <div className="flex flex-col  md:flex-row  gap-5 pt-10  mt-20">
+    <div className="flex flex-col  md:flex-row  gap-5 pt-10  mt-16">
       <div className='min-w-48 lg:w-[60%] md:w-[70%]'>
       {category && (
             <div className='min-w-48 lg:w-[100%] md:w-[70%]'>
@@ -178,13 +180,16 @@ console.log(category,"category recieved")
         <div className='truncate lg:w-3/4'>
         
          {searchAuto === null && (
-            <h1 className="text-xl sm:text-2xl  text-gray-700 font-normal mb-4">
+            <h1 className={`text-xl sm:text-2xl font-normal mb-4 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+
               SEARCH RESULTS FOR: "{searchTerm}"
             </h1>
           )}       
            </div>
         {loading ? ( 
-          <p className='font-semibold'>Loading...</p>
+          <p className={`font-semibold ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+  Loading...
+</p>
         ) : (
           <div  className="flex flex-col gap-3">
             {productData.length > 0 ? (

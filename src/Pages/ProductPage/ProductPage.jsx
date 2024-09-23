@@ -14,6 +14,8 @@ const ProductPage = () => {
   const [imageThumb,setImageThumb] =useState('')
 
   const { currentUser } = useSelector((state) => state.user)
+  const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
+
 
 
 
@@ -85,8 +87,8 @@ if (!product || !product.images) {
 }
 
 return (
-  <div className='transition-opacity ease-in duration-500 opacity-100 mt-24'>
-    <div className='flex gap-12 sm:12 flex-col sm:flex-row '>
+  <div className='transition-opacity ease-in duration-500 opacity-100 mt-16 pt-5'>
+    <div className='flex gap-12  sm:12 flex-col sm:flex-row '>
       <div className='flex-1 flex flex-col-reverse md:fl gap-3  sm:flex-row'>
         <div className='flex  sm:flex-col items-center  sm:overflow-y-scroll justify-between sm:justify-normal order-2 md:order-1 sm:order-1 md:w-[8%] lg:w-[8%]   gap-2  w-[20%]'>
           {product.images.map((item, index) => (
@@ -97,61 +99,64 @@ return (
           <img className='w-full border border-t p-1   h-auto' src={image}></img>
         </div>
         <div className='flex-1 sm:order-3 md:order-3'>
-          <h1 className='font-normal   text-gray-700 text-2xl mt-2 p-3'>{product.name}</h1>
+        <h1 className={`font-normal text-2xl mt-2 p-3 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+  {product.name}
+</h1>
           <div className='flex flex-col  m-2 '>
           {product.brand && (
       <div className="product-ram">
-        <p className='font-medium text-gray-700 pl-2'>Brand: {product.brand} </p> 
+        <p className={`font-medium pl-2 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}
+        >Brand: {product.brand} </p> 
       </div>
     )}
     {product.resolution && (
       <div className="product-ram">
-        <p className='font-medium text-gray-700 pl-2'>Resolution: {product.resolution} </p> 
+        <p  className={`font-medium pl-2 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>Resolution: {product.resolution} </p> 
       </div>
     )}
 
 {product.ram && (
       <div className="product-ram">
-        <p className='font-medium text-gray-700 pl-2'>Ram: {`${product.ram} GB`} </p> 
+        <p  className={`font-medium pl-2 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>Ram: {`${product.ram} GB`} </p> 
       </div>
     )}
     {product.storage && (
       <div className="product-ram">
-        <p className='font-medium text-gray-700 pl-2'>Storage: {`${product.storage} GB`} </p> 
+        <p  className={`font-medium pl-2 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>Storage: {`${product.storage} GB`} </p> 
       </div>
     )}
    
 
 {product.screenSize && (
       <div className="product-ram">
-        <p className='font-medium text-gray-700 pl-2'>Screensize: {`${product.screenSize}"`} </p> 
+        <p  className={`font-medium pl-2 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>Screensize: {`${product.screenSize}"`} </p> 
       </div>
     )}
      {product.batteryCapacity && (
       <div className="product-ram">
-        <p className='font-medium text-gray-700 pl-2'>Battery: {`${product.batteryCapacity} mah`} </p> 
+        <p  className={`font-medium pl-2 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>Battery: {`${product.batteryCapacity} mah`} </p> 
       </div>
     )}
     {product.processor && (
       <div className="product-ram">
-        <p className='font-medium text-gray-700 pl-2'>Processor: {`${product.processor}`} </p> 
+        <p  className={`font-medium pl-2 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>Processor: {`${product.processor}`} </p> 
       </div>
     )}
 
     {product.technology && (
       <div className="product-ram">
-        <p className='font-medium text-gray-700 pl-2'>Technology and Certification: {`${product.technology}`} </p> 
+        <p  className={`font-medium pl-2 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>Technology and Certification: {`${product.technology}`} </p> 
       </div>
     )}
     {product.graphicsCard && (
       <div className="product-ram">
-        <p className='font-medium text-gray-700  pl-2'>Graphics: {`${product.graphicsCard}`} </p> 
+        <p  className={`font-medium pl-2 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>Graphics: {`${product.graphicsCard}`} </p> 
       </div>
     )}
 
 {product.price && (
       <div className="product-ram">
-        <p className='font-bold text-gray-700 mt-3 text-lg pl-2'>Price: {`${product.price} Rs`} </p> 
+        <p  className={`font-medium pl-2 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>Price: {`${product.price} Rs`} </p> 
       </div>
     )}
     
@@ -161,8 +166,13 @@ return (
           <button onClick={addToCart} className=' bg-black text-white p-3 m-3 mt-4 hover:bg-gray-800 hover:text-white focus:bg-gray-700  focus:outline-none'>ADD TO CART</button>
           <hr className='mt-2 sm:w-4/5'/>
           <div className='text-sm text-gray-700 pl-3 mt-2 flex flex-col gap-1'>
-            <p>100% Original Product</p>
-            <p>Top Rated Brand</p>
+          <p className={`${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+  100% Original Product
+</p>
+<p className={`${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+  Top Rated Brand
+</p>
+
 
           </div>
         </div>
@@ -172,8 +182,12 @@ return (
     </div>
     <div className='mt-5'>
         <div className=''>
-        <h1 className='text-sm font-normal text-gray-900 md:text-xl lg:text-xl px-5 py-3  '>Description:</h1>
-<p className='text-sm md:text-xl lg:text-xl px-5  font-normal text-gray-900 '>{product.description}</p>
+        <h1 className={`text-sm font-normal md:text-xl lg:text-xl px-5 py-3 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+  Description:
+</h1>
+        <p className={`text-sm md:text-xl lg:text-xl px-5 font-normal ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+  {product.description}
+</p>
 
         </div>
 

@@ -1,10 +1,14 @@
 import React from 'react'
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import { useSelector } from 'react-redux'
+
 
 
 const Hero = () => {
+  const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
+
 
 
     const settings = {
@@ -14,7 +18,7 @@ const Hero = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 3000,
         appendDots: dots => (
             <div style={{position:'absolute',bottom: '10px', width: '100%' }}>
               <ul style={{margin:'0px',padding:'0px'}}>{dots}</ul>
@@ -32,18 +36,24 @@ const Hero = () => {
       ];
 
   return (
-    <div className='mt-28 flex flex-col m-5  sm:flex-row border border-gray-400'>
+    <div className='  flex flex-col m-5  sm:flex-row border-2 border-gray-400'>
         <div className='w-full  sm:w-1/2 flex md:p-7 sm:p-5 lg:p-24 items-center justify-center py-0 sm:py-0'>
         <div className='text-gray-700   m-6 sm:m-3 md:m-5 lg:m-0 items-center text-center'>
             <div className='flex items-center  gap-2'>
-                <p className='w-8 md:w-11 h-[2px] bg-[#414141]'> </p>
-                <p className='font-medium text-sm md:text-base'>100% AUTHENTIC PRODUCTS</p>
+            <p className={`w-8 md:w-11 h-[2px] ${isDarkMode ? 'bg-[#414141]' : 'bg-white'}`}> </p>
+            <p className={`font-medium text-sm md:text-base ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+  100% AUTHENTIC PRODUCTS
+</p>
 
             </div>
-            <h1 className='text-3xl sm:py-3  lg:text-4xl leading-relaxed'>HYPER CHARGE YOUR SHOPPING !</h1>
+            <h1 className={`text-3xl sm:py-3 lg:text-4xl leading-relaxed ${isDarkMode ? 'text-gray-800' : 'text-white'}`}>
+  HYPER CHARGE YOUR SHOPPING!
+</h1>
             <div className='flex items-center mt-2 gap-2'>
-                <p className='font-semibold text-sm  md:text-base'>HIGHLY RATED PRODUCTS</p>
-                <p className='w-8 md:w-11  h-[2px] bg-[#414141]'> </p>
+            <p className={`font-semibold text-sm md:text-base ${isDarkMode ? 'text-gray-800' : 'text-white'}`}>
+  HIGHLY RATED PRODUCTS
+</p>
+<p className={`w-8 md:w-11 h-[2px] ${isDarkMode ? 'bg-[#414141]' : 'bg-white'}`}></p>
 
 
 

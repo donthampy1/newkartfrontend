@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 
 
@@ -9,6 +10,8 @@ const Search = () => {
     const [suggestion, setSuggestion] = useState([])
     const navigate = useNavigate()
     const searchRef = useRef(null)
+    const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
+
 
 
     useEffect(()=>{
@@ -67,25 +70,28 @@ const Search = () => {
   return (
     <>
     <div ref={searchRef} >
-<div className="  lg:w-96 w-44 md:w-64 sm:w-64 inline-flex items-center p-2 justify-center border border-gray-700   rounded-full">
-    
+    <div className={`lg:w-96 w-44 md:w-64 sm:w-64 inline-flex items-center p-2 justify-center border rounded-full ${isDarkMode ? 'border-gray-700' : 'border-white'}`}>
+
 <input
     type="text"
-    className="  w-32 sm:w-52 md:w-52 lg:w-80 outline-none text-sm"
+    className={`w-32 sm:w-52 md:w-52 lg:w-80 bg-inherit outline-none text-sm ${
+        isDarkMode ? 'placeholder-gray-700' : 'placeholder-white'
+      }`}
     placeholder="search..." 
     
     onChange={(e)=> setQuery(e.target.value)}/>
-    <SearchRoundedIcon  type='submit' onClick={handleSearch} className="text-gray-700 cursor-pointer" />
+    <SearchRoundedIcon  type='submit' onClick={handleSearch}   className={`cursor-pointer ${isDarkMode ? 'text-gray-700' : 'text-white'}`}
+    />
 
 
 </div> 
-<div className="absolute bg-gray-100  mt-5    gap-2    rounded-xl">
+<div className={`absolute mt-5 gap-2 rounded-xl ${isDarkMode ? 'bg-gray-100' : 'bg-gray-800'}`}>
 {
 suggestion.map(item => <p  onClick={() => {
     navigate(`/productlist?searchterm=${item.name}`);
     setSuggestion([]);  
   }}
-   className='  font-normal p-2 rounded-xl hover:bg-gray-200 lg:w-96 w-64  truncate' key = {item._id}>
+   className='  font-normal p-2 rounded-xl hover:bg-gray-400 lg:w-96 w-64  truncate' key = {item._id}>
     {item.name}
     </p>)
 }

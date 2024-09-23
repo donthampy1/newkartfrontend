@@ -2,7 +2,9 @@ import React from "react";
 import {  Box } from "@mui/material";
 import { useForm } from "react-hook-form"
 import { Link,useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "axios"
+import { useSelector } from 'react-redux'
+
 
 
 function SellerSignup() {
@@ -10,6 +12,8 @@ function SellerSignup() {
 
     const {register,handleSubmit,formState:{ errors,isSubmitting},setError } = useForm()
     const navigate = useNavigate()
+    const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
+
 
 
 
@@ -39,7 +43,7 @@ function SellerSignup() {
     <div className="p-6   border-gray-400 border shadow-lg  w-80 flex flex-col items-center  pb-11  ">
      
 
-      <h1 className="text-3xl text-gray-700 py-2">Register</h1>
+    <h1 className={`text-3xl py-5 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>Register</h1>
       <Box>
         <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -114,7 +118,7 @@ function SellerSignup() {
        <button  
        className="mt-2 hover:text-blue-900 ">
             <Link to='/sellerlogin'>
-            <p> registered partner ? </p>
+            <p   className={` ${isDarkMode ? 'text-gray-700' : 'text-white'}`}> registered partner ? </p>
             </Link>
           </button>
 

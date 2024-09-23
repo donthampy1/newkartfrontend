@@ -13,6 +13,8 @@ function SellerLogin() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { loading, error } = useSelector((state) => state.user)
+    const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
+
 
     const onSubmit = async (data)=>{
       try {
@@ -50,7 +52,7 @@ function SellerLogin() {
       <div className="p-6  border-gray-400 border shadow-lg  w-80 flex flex-col items-center  pb-11   ">
         
 
-        <h1 className="text-3xl  text-gray-700 py-5">Sign In</h1>
+      <h1 className={`text-3xl py-5 ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>Sign In</h1>
         <Box>
           <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -103,7 +105,7 @@ function SellerLogin() {
          <button  
          className=" mt-2 hover:text-blue-900 ">
               <Link to='/sellersignup'>
-              <p>Not a registered seller ? Sign Up</p>
+              <p   className={` ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>Not a registered seller ? Sign Up</p>
               </Link>
             </button>
 

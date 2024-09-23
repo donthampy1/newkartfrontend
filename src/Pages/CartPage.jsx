@@ -13,6 +13,7 @@ const CartPage = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(true); 
     const { currentUser } = useSelector((state) => state.user)
+    const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
 
 
 
@@ -51,14 +52,16 @@ console.log(totalPrice)
 
 
 if (loading) {
-  return <div className="mt-20">Not Found</div>; 
+  return <div className="mt-16 pt-4">Not Found</div>; 
 }
 
   return (
     <>
-    <div className='mt-20 text-gray-700  '>
+    <div className='mt-16 pt-4 text-gray-700  '>
        <div className='text-2xl mb-3'>
-        <h1>Your Cart</h1>
+       <h1 className={`${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+  Your Cart
+</h1>
        </div>
        <div >
        {product.map(item => (
@@ -71,7 +74,6 @@ if (loading) {
   </div>
   <div  className="font-normal    text-gray-700 ">
     <h2  >{item.productName}</h2>
-    <p>rating: {item.rating}</p>
     <p className='font-medium'>Price: {item.productPrice} rupees</p>
     <p>Quantity: {item.quantity}</p>
 
@@ -84,8 +86,8 @@ if (loading) {
             ))}
 
         </div>
-        <div className=' flex justify-center my-10 mb-0'>
-          <div className='w-[350px]' >
+        <div className={`flex justify-center my-10 mb-0 ${isDarkMode ? ' text-gray-700' : ' text-white'}`}>
+        <div className='w-[350px]' >
 
           <div className='text-2xl'>
             <h1 className='ml-3'>CART TOTAL</h1>
