@@ -33,38 +33,29 @@ function App() {
 <Router>
     <Header/>
     <Routes>
+      
       <Route path='/' element={<Home/>} />
       <Route path='/signin' element={<Login/>} />
       <Route path='/signup' element={<Signup/>} />
       <Route path= '/account' element={<Home/>}/>
-
       <Route path='/profile' element={<Profile/>} />
-
       <Route path='/sellerlogin' element={<SellerLogin/>} />
       <Route path='/sellersignup' element={<SellerSignup/>} />
 
       <Route path='/selleraccount' element={<SellerAccount/>} >
-      <Route path='addproducts' element={<Addproducts/>} />
+
+           <Route path='addproducts' element={<Addproducts/>} />
+
       </Route>
+
       <Route path='/selleraccount/editproducts' element={<EditproductsPage/>} />
       <Route path='/selleraccount/sellerorders' element={<SellerOrders/>} />
       <Route path='/dashboard' element={<Dashboard/>}/>
-
-
       <Route path='/productlist' element={<ProductList/>}/>
-      
       <Route path='/product/:id' element={<ProductPage/>}/>
-      
       <Route path='/cart/:id' element={<CartPage/>}/>
       <Route path='/cart/checkout/:id' element={<CheckOut/>}/>
       <Route path='/orders/:id' element={<Orders/>}/>
-
-
-
-
-
-
-
 
     </Routes>
     <Footer/>

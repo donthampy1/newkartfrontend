@@ -18,7 +18,7 @@ const Dashboard = () => {
     const fetch = async (retries = 5, delay = 2000) => {
 
       try {
-        const response = await axios.get(`https://newkartfrontend.vercel.app/analytics/data?sellerId=${currentUser._id}`)
+        const response = await axios.get(`https://newkartbackend-1.onrender.com/analytics/data?sellerId=${currentUser._id}`)
         setData(response.data.orders)
         setproducts(response.data.products)
         console.log(response.data.orders,products,data)
