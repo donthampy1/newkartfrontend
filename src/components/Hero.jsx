@@ -64,7 +64,7 @@ const Hero = () => {
             </div>
             
             {/*div for slider*/}
-            <div className='w-full sm:w-1/2'>
+            <div className='w-full sm:w-1/2 p-8'>
         <Slider {...settings}>
           {images.map((img, index) => (
             <div key={index} className='justify-center'>

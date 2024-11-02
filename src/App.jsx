@@ -19,6 +19,7 @@ import EditproductsPage from './Pages/SellerPages/EditproductsPage';
 import SellerOrders from './Pages/SellerPages/SellerOrders';
 import Orders from './Pages/Orders'
 import { useSelector } from 'react-redux'
+import Dashboard from './Pages/Dashboard';
 
 
 
@@ -47,6 +48,7 @@ function App() {
       </Route>
       <Route path='/selleraccount/editproducts' element={<EditproductsPage/>} />
       <Route path='/selleraccount/sellerorders' element={<SellerOrders/>} />
+      <Route path='/dashboard' element={<Dashboard/>}/>
 
 
       <Route path='/productlist' element={<ProductList/>}/>

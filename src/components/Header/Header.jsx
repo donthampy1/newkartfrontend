@@ -9,7 +9,8 @@ import DarkModeIcon from '@mui/icons-material/DarkMode'
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded'
 import { useSelector, useDispatch } from 'react-redux'
-import { toggleDarkMode } from '../../redux/user/darkmodeSlice';
+import { toggleDarkMode } from '../../redux/user/darkmodeSlice'
+import LightModeIcon from '@mui/icons-material/LightMode';
 
 
 
@@ -74,7 +75,7 @@ function Header() {
       <hr className={`w-2/4 border-none h-[1.5px] hidden ${isDarkMode ? 'bg-gray-700' : 'bg-white'}`} />
     </NavLink>
   )}
-    {currentUser && (
+    {currentUser?.isUser && (
             <NavLink
               to={`/cart/${currentUser._id}`}
               className="flex flex-col items-center gap-1"
@@ -83,11 +84,35 @@ function Header() {
               <hr className={`w-2/4 border-none h-[1.5px] hidden ${isDarkMode ? 'bg-gray-700' : 'bg-white'}`} />
               </NavLink>
           )}
-  <DarkModeIcon  onClick={() => {
-           dispatch(toggleDarkMode()),
-           console.log(isDarkMode)
-      }}
-      sx={{color:isDarkMode ? '#374151': 'yellow'}}/>
+
+{currentUser?.isSeller && (
+            <NavLink
+              to='/dashboard'
+              className="flex flex-col items-center gap-1"
+            >
+              DASHBOARD
+              <hr className={`w-2/4 border-none h-[1.5px] hidden ${isDarkMode ? 'bg-gray-700' : 'bg-white'}`} />
+
+              </NavLink>
+          )}
+
+{isDarkMode ? (
+        <DarkModeIcon
+          onClick={() => {
+            dispatch(toggleDarkMode());
+            console.log(isDarkMode);
+          }}
+          sx={{ color: 'gray' }} 
+        />
+      ) : (
+        <LightModeIcon
+          onClick={() => {
+            dispatch(toggleDarkMode());
+            console.log(isDarkMode);
+          }}
+          sx={{ color: 'white' }} 
+        />
+      )}
 
 </ul>
 <div className=" py-5 cursor-pointer mx-0 md:hidden">
@@ -116,12 +141,24 @@ function Header() {
     } }}/>
       <p>Back</p>
       </div>
-      <DarkModeIcon  onClick={() => {
-           dispatch(toggleDarkMode()),
-           console.log(isDarkMode)
-      }
+      {isDarkMode ? (
+        <DarkModeIcon
+          onClick={() => {
+            dispatch(toggleDarkMode());
+            console.log(isDarkMode);
+          }}
+          sx={{ color: 'gray' }} 
+        />
+      ) : (
+        <LightModeIcon
+          onClick={() => {
+            dispatch(toggleDarkMode());
+            console.log(isDarkMode);
+          }}
+          sx={{ color: 'white' }} 
+        />
+      )}
 
-      } fontSize="medium"  sx={{color:isDarkMode ? '#374151': 'yellow'}}/>
       </div>
       
   {currentUser ? (

@@ -21,7 +21,7 @@ const Search = () => {
         }
 
 
-        if (query.length > 2 ){
+        if (query.length > 1 ){
             autoComplete(query)
             console.log(suggestion)
         }else{
@@ -99,7 +99,7 @@ suggestion.map(item => <p  onClick={() => {
 </div>
 </div>
   
-  </>
+</>
  )
 }
 
