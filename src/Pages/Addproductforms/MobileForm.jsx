@@ -10,7 +10,6 @@ const MobileForm = ({ category }) => {
   const { register, handleSubmit, formState: { errors, isSubmitting }, setError ,reset } = useForm();
   const navigate = useNavigate()
   const { currentUser } = useSelector((state) => state.user)
-  console.log(currentUser._id)
 
 
 

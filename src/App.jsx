@@ -29,7 +29,7 @@ function App() {
 
   return (
     <>
-<div className={`px-4 sm:px-[5vw] md:px-[4vw] lg:px-[3vw] ${isDarkMode ? 'bg-white' : 'bg-zinc-900'}`}>
+<div className={` sm:px-[5vw] md:px-[4vw] lg:px-[3vw] ${isDarkMode ? 'bg-white' : 'bg-zinc-900'}`}>
 <Router>
     <Header/>
     <Routes>

@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <>
-<div className={`flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-9 my-10 mt-48 text-sm ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
+<div className={`flex flex-col sm:p-4 p-4 sm:grid grid-cols-[3fr_1fr_1fr] gap-9 my-10 mt-48 text-sm ${isDarkMode ? 'text-gray-700' : 'text-white'}`}>
 <div className=''>
 <div className="flex flex-row mb-3 w-32  font-semibold">
       <DevicesOutlinedIcon sx={{ fontSize: 26,color: isDarkMode ? '#374151' : 'white', '& path': {
